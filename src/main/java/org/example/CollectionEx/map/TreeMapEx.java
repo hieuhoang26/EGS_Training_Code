@@ -1,4 +1,4 @@
-package CollectionEx.map;
+package org.example.CollectionEx.map;
 
 import java.util.Map;
 import java.util.TreeMap;

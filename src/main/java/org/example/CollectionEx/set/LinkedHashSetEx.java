@@ -1,7 +1,6 @@
-package CollectionEx.set;
+package org.example.CollectionEx.set;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 
 public class LinkedHashSetEx {

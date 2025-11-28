@@ -1,4 +1,4 @@
-package CollectionEx.queue;
+package org.example.CollectionEx.queue;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 

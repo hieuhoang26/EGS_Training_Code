@@ -5,53 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6a278bc-2174-42e3-89b7-3f74056aba87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/list/ArrayListEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/list/LinkedListEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/map/HashMapEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/map/LinkedHashMapEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/map/TreeMapEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/queue/ArrayDequeEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/queue/PriorityQueueEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/set/HashSetEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/set/LinkedHashSetEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/CollectionEx/set/TreeSetEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/GenericEx/BoundedEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/GenericEx/MethodEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/GenericEx/PariEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/GenericEx/WildcardEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/streamApi/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/streamApi/OrderFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/streamApi/OrderMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/streamApi/OrderUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../egs/src/streamApi/ques.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GenericEx/BoundedEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GenericEx/MethodEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GenericEx/PariEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/GenericEx/WildcardEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/day1/Calculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/day1/StringBufferEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/day1/StringEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/exception/ExceptionSample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/RequestHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/streamApi/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/streamApi/OrderFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/streamApi/OrderMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/streamApi/OrderUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/streamApi/ques.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/exception/ExceptionSampleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../egs/src/day1/Calculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../egs/src/day1/Calculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../egs/src/day1/StringEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/../egs/src/day1/StringEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/SimpleServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/SimpleServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Fundamentals/Array/Arrays.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Fundamentals/Array/Arrays.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Fundamentals/Collection/note.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Fundamentals/Collection/note.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Fundamentals/Generics/Generics.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Fundamentals/Generics/Generics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../images/type-of-inheritances.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../images/type-of-inheritances.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/list/ArrayListEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/list/LinkedListEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/HashMapEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/LinkedHashMapEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/TreeMapEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/queue/ArrayDequeEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/queue/PriorityQueueEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/HashSetEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/LinkedHashSetEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/TreeSetEx.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,11 +29,14 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="366I6ponKaLYsPs1GQPj2O3XuVI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -86,7 +52,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/EGS Trainning/Code/egs_train/src/main/java/org/example",
+    "last_opened_file_path": "D:/egs_train/src/main/java/org/example",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -97,6 +63,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\egs_train\src\main\java\org\example" />
       <recent name="D:\EGS Trainning\Code\egs_train\src\main\java\org\example" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -113,6 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1764320421857</updated>
       <workItem from="1764320423537" duration="3784000" />
+      <workItem from="1764325064693" duration="48000" />
     </task>
     <servers />
   </component>
