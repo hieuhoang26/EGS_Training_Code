@@ -52,7 +52,7 @@ public class RequestHandler implements Runnable {
     }
 
     private String handleRequest(String method, String path) {
-        // Manual routing - rất cồng kềnh so với Spring
+        // Manual routing
         if ("GET".equals(method)) {
             if ("/users".equals(path)) {
                 return server.getUserService().getAllUsers();
