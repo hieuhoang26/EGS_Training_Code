@@ -41,7 +41,8 @@ public class DbConfig {
         dataSource = new HikariDataSource(config);
     }
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL,USER,PASS);
+//        return DriverManager.getConnection(URL,USER,PASS);
+        return dataSource.getConnection();
     }
 
     // close data source
