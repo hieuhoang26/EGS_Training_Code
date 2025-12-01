@@ -22,26 +22,34 @@ public class App
         DbConfig.getConnection();
         System.out.println("Connection Established successfully");
 
+        User u = new User("nam", "nam@gmail.com", "12345");
+
         UserRepository userRepository = new UserRepository();
         PostRepository postRepository = new PostRepository();
 
+        // CREATE
+        userRepository.save(u);
+        // GET user by Id
         System.out.println("Find by Id = " + userRepository.findById(1));
+        // GET all
         System.out.println("Find all :" + userRepository.findAll());
+        // Update
+        User u2 = new User("nam", "nam@gmail.com", "hahaha");
+        userRepository.update(u2);
 
         // Transaction
-//        User u = new User("john", "john@gmail.com", "12345");
-//        List<Post> newPosts = List.of(
-//                new Post(0, "T1", "Content A"),
-//                new Post(0, "T2", "Content B")
-//        );
-//        postRepository.createUserPosts(u, newPosts);
+        List<Post> newPosts = List.of(
+                new Post(0, "T1", "Content A"),
+                new Post(0, "T2", "Content B")
+        );
+        postRepository.createUserPosts(u, newPosts);
 
         // Create batch posts
-//        List<Post> batch = new ArrayList<>();
-//        for (int i = 0; i < 50; i++) {
-//            batch.add(new Post(1, "Batch " + i, "Content " + i));
-//        }
-//        postRepository.saveBatch(batch);
+        List<Post> batch = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            batch.add(new Post(1, "Batch " + i, "Content " + i));
+        }
+        postRepository.saveBatch(batch);
 
         // GET post by UserId
         postRepository.findUserWithPostsJoin(1)

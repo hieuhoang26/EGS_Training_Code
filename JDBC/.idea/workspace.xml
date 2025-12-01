@@ -5,58 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5889a1dd-a881-464d-88fb-a8fa4e4ee0b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/config/DbConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/dto/UserPost.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/PostRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/simplelogger.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/list/ArrayListEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/list/LinkedListEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/map/HashMapEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/map/LinkedHashMapEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/map/TreeMapEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/queue/ArrayDequeEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/queue/PriorityQueueEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/set/HashSetEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/set/LinkedHashSetEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/CollectionEx/set/TreeSetEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/GenericEx/BoundedEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/GenericEx/MethodEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/GenericEx/PariEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/GenericEx/WildcardEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/day1/Calculator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/day1/StringBufferEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/day1/StringEx.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/exception/ExceptionSample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/simpleSer/RequestHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/simpleSer/SimpleServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/simpleSer/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/simpleSer/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/streamApi/Order.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/streamApi/OrderFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/streamApi/OrderMain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/streamApi/OrderUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/main/java/org/example/streamApi/ques.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/test/java/org/example/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/test/java/org/example/exception/ExceptionSampleTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764571322712</updated>
-      <workItem from="1764571323909" duration="8244000" />
+      <workItem from="1764571323909" duration="9695000" />
     </task>
     <servers />
   </component>
