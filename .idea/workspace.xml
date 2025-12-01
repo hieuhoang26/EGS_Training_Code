@@ -5,16 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6a278bc-2174-42e3-89b7-3f74056aba87" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/list/ArrayListEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/list/LinkedListEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/HashMapEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/LinkedHashMapEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/TreeMapEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/queue/ArrayDequeEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/queue/PriorityQueueEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/HashSetEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/LinkedHashSetEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/TreeSetEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/list/ArrayListEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/list/LinkedListEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/HashMapEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/LinkedHashMapEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/map/TreeMapEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/queue/ArrayDequeEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/queue/PriorityQueueEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/HashSetEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/LinkedHashSetEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CollectionEx/set/TreeSetEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GenericEx/BoundedEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GenericEx/MethodEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GenericEx/PariEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GenericEx/WildcardEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/day1/Calculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/day1/StringBufferEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/day1/StringEx.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/exception/ExceptionSample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/RequestHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/SimpleServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/simpleSer/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/streamApi/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/streamApi/OrderFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/streamApi/OrderMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/streamApi/OrderUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/streamApi/ques.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/exception/ExceptionSampleTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,25 +69,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.SimpleServer.executor": "Run",
-    "JUnit.ExceptionSampleTest.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/egs_train/src/main/java/org/example",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SimpleServer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExceptionSampleTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/egs_train/src/main/java/org/example&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\egs_train\src\main\java\org\example" />
@@ -81,6 +108,9 @@
       <updated>1764320421857</updated>
       <workItem from="1764320423537" duration="3784000" />
       <workItem from="1764325064693" duration="48000" />
+      <workItem from="1764326612305" duration="873000" />
+      <workItem from="1764556537188" duration="1282000" />
+      <workItem from="1764564359849" duration="3000" />
     </task>
     <servers />
   </component>
