@@ -1,13 +1,17 @@
 package org.example.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.*;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class User {
 
     @Id

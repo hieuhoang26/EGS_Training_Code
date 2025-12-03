@@ -2,13 +2,16 @@ package org.example.model;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.*;
 
 @Entity
 @Table(name = "posts")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post {
 
     @Id
@@ -39,6 +42,5 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private Set<Tag> tags = new HashSet<>();
-
-    // getters/setters
+// getters/setters
 }

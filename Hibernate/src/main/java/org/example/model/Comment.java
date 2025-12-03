@@ -1,10 +1,17 @@
 package org.example.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
 import java.util.*;
 
 @Entity
 @Table(name = "comments")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Comment {
 
     @Id
