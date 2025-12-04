@@ -1,0 +1,73 @@
+-- INSERT INTO "users" (id, username) VALUES (1, 'alice');
+-- INSERT INTO "users" (id, username) VALUES (2, 'bob');
+-- INSERT INTO "users" (id, username) VALUES (3, 'charlie');
+-- INSERT INTO "users" (id, username) VALUES (4, 'david');
+-- INSERT INTO "users" (id, username) VALUES (5, 'eva');
+--
+-- INSERT INTO posts (id, title, content, user_id) VALUES (1, 'Intro to Hibernate', 'Hibernate basic tutorial', 1);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (2, 'JPA vs Hibernate', 'Comparison article', 1);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (3, 'Spring Boot Guide', 'Starting with Spring Boot', 2);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (4, 'REST API Best Practices', 'How to design APIs', 2);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (5, 'Java Concurrency', 'Threading concepts', 3);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (6, 'Microservices 101', 'Microservices architecture', 3);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (7, 'Docker Basics', 'Container 101', 4);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (8, 'Kubernetes Intro', 'K8s overview', 4);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (9, 'System Design', 'Scaling systems', 5);
+-- INSERT INTO posts (id, title, content, user_id) VALUES (10, 'SQL Optimization', 'Index, join, query tuning', 5);
+--
+--
+-- INSERT INTO tags (id, name) VALUES (1, 'java');
+-- INSERT INTO tags (id, name) VALUES (2, 'spring');
+-- INSERT INTO tags (id, name) VALUES (3, 'hibernate');
+-- INSERT INTO tags (id, name) VALUES (4, 'jpa');
+-- INSERT INTO tags (id, name) VALUES (5, 'docker');
+-- INSERT INTO tags (id, name) VALUES (6, 'kubernetes');
+-- INSERT INTO tags (id, name) VALUES (7, 'microservices');
+-- INSERT INTO tags (id, name) VALUES (8, 'database');
+-- INSERT INTO tags (id, name) VALUES (9, 'system-design');
+-- INSERT INTO tags (id, name) VALUES (10, 'concurrency');
+--
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (1, 1);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (1, 3);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (1, 4);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (2, 1);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (2, 3);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (3, 1);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (3, 2);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (4, 2);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (4, 7);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (5, 1);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (5, 10);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (6, 7);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (6, 1);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (7, 5);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (8, 6);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (8, 5);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (9, 9);
+--
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (10, 8);
+-- INSERT INTO post_tags (post_id, tag_id) VALUES (10, 9);
+--
+--
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (1, 'Nice article!', 1, NULL);
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (2, 'Very helpful, thanks!', 1, NULL);
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (3, 'I disagree on some points', 4, NULL);
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (4, 'Great explanation', 5, NULL);
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (5, 'Please write more about this', 6, NULL);
+--
+--
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (6, 'Thanks!', 1, 1);
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (7, 'Glad it helped', 1, 2);
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (8, 'Which point do you disagree?', 4, 3);
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (9, 'Thanks for reading!', 5, 4);
+-- INSERT INTO comments (id, text, post_id, parent_id) VALUES (10, 'Sure, will do!', 6, 5);
+--
