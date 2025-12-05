@@ -12,10 +12,14 @@ import org.example.search_advance.dto.response.UserBasicInfo;
 import org.example.search_advance.dto.response.UserDetailResponse;
 import org.example.search_advance.exception.ResourceNotFoundException;
 import org.example.search_advance.model.User;
+import org.example.search_advance.service.AddressService;
 import org.example.search_advance.service.UserService;
+import org.example.search_advance.util.Gender;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -27,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final AddressService addressService;
 
     @Operation(summary = "Get user detail")
     @GetMapping("/{userId}")
@@ -41,9 +46,10 @@ public class UserController {
     }
     @Operation(summary = "Get basic info")
     @GetMapping("/info")
-    public ResponseData<?> getBasicInfo() {
+    public ResponseData<List<UserBasicInfo>> getBasicInfo() {
         try {
-            return new ResponseData<>(HttpStatus.OK.value(), "user", userService.getAllBasicInfo());
+            List<UserBasicInfo> allBasicInfo = userService.getAllBasicInfo();
+            return new ResponseData<>(HttpStatus.OK.value(), "user", allBasicInfo);
         } catch (ResourceNotFoundException e) {
             log.error("errorMessage={}", e.getMessage(), e.getCause());
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), e.getMessage());

@@ -38,4 +38,15 @@ public class User {
     public void preUpdate() {
         System.out.println("User updated: " + username);
     }
+
+    // check id created
+    public boolean isNew() {
+        return id == null;
+    }
+    public void addPost(Post post){
+        posts.add(post);
+    }
+    public void remove(Post post){
+        posts.remove(post);
+    }
 }

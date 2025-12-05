@@ -5,6 +5,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.search_advance.dto.response.AddressValue;
 import org.example.search_advance.dto.response.PageResponse;
 import org.example.search_advance.dto.response.UserBasicInfo;
 import org.example.search_advance.dto.response.UserDetailResponse;
@@ -15,13 +16,12 @@ import org.example.search_advance.service.UserService;
 import org.example.search_advance.util.UserStatus;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -54,9 +54,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<UserBasicInfo> getAllBasicInfo() {
         return userRepository.getBasicInfoByStatus(UserStatus.ACTIVE);
     }
+
+
 
     @Override
     public PageResponse<?> getAllUsersWithSortBy(int pageNo, int pageSize, String sortBy) {

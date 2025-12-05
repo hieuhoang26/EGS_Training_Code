@@ -2,6 +2,7 @@ package org.example.service;
 
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.*;
+import jakarta.transaction.Transactional;
 import org.example.config.DbConfig;
 import org.example.dao.PostDao;
 import org.example.dao.UserDao;

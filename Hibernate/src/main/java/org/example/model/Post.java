@@ -19,6 +19,7 @@ public class Post {
     @SequenceGenerator(name = "post_seq", sequenceName = "post_seq", allocationSize = 1)
     private Long id;
 
+    @Column
     private String title;
 
     @Column(columnDefinition = "TEXT")
@@ -42,5 +43,10 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private Set<Tag> tags = new HashSet<>();
+
+    public Post(String title,String content) {
+    this.title = title;
+    this.content = content;
+    }
 // getters/setters
 }
