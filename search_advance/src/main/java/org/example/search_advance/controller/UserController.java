@@ -46,9 +46,9 @@ public class UserController {
     }
     @Operation(summary = "Get basic info")
     @GetMapping("/info")
-    public ResponseData<List<UserBasicInfo>> getBasicInfo() {
+    public ResponseData<?> getBasicInfo() {
         try {
-            List<UserBasicInfo> allBasicInfo = userService.getAllBasicInfo();
+            List<?> allBasicInfo = addressService.getAddressInfo();
             return new ResponseData<>(HttpStatus.OK.value(), "user", allBasicInfo);
         } catch (ResourceNotFoundException e) {
             log.error("errorMessage={}", e.getMessage(), e.getCause());

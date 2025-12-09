@@ -1,7 +1,6 @@
 package org.example.search_advance.service;
 
 
-import org.example.search_advance.dto.response.AddressValue;
 import org.example.search_advance.dto.response.PageResponse;
 import org.example.search_advance.dto.response.UserBasicInfo;
 import org.example.search_advance.dto.response.UserDetailResponse;

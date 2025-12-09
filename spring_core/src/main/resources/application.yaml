@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring_core
+
+app:
+  region: us-east-1
+  time-zone: UTC+7

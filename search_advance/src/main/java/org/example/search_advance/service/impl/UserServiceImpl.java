@@ -5,7 +5,6 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.search_advance.dto.response.AddressValue;
 import org.example.search_advance.dto.response.PageResponse;
 import org.example.search_advance.dto.response.UserBasicInfo;
 import org.example.search_advance.dto.response.UserDetailResponse;

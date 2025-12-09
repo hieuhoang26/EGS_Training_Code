@@ -16,8 +16,6 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-  jackson:
-    serialization:
 
 springdoc:
   api-docs:
