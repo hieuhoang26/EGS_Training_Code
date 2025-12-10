@@ -6,7 +6,7 @@ spring:
   devtools:
     add-properties: true
   datasource:
-    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/search_sample}
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/jpa_ex}
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:12345678}
   jpa:
@@ -15,7 +15,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: create
 
 springdoc:
   api-docs:
@@ -28,3 +28,27 @@ openapi:
     server: http://localhost:${server.port}
     title: API Document
     version: 1.0.0
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+    # app
+    com.example.demo: DEBUG
+    com.example.demo.user: TRACE
+    com.example.demo.service: WARN
+    com.example.demo.repository: ERROR
+
+    # spring
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+    org.springframework.jdbc.core: TRACE
+
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
+
+
+
+

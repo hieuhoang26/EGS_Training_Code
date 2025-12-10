@@ -5,14 +5,18 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.search_advance.dto.request.AddressDTO;
+import org.example.search_advance.dto.request.UserRequestDto;
 import org.example.search_advance.dto.response.PageResponse;
 import org.example.search_advance.dto.response.UserBasicInfo;
 import org.example.search_advance.dto.response.UserDetailResponse;
 import org.example.search_advance.exception.ResourceNotFoundException;
+import org.example.search_advance.model.Address;
 import org.example.search_advance.model.User;
 import org.example.search_advance.repository.UserRepository;
 import org.example.search_advance.service.UserService;
 import org.example.search_advance.util.UserStatus;
+import org.example.search_advance.util.UserType;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +24,9 @@ import org.springframework.util.StringUtils;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,7 +44,11 @@ public class UserServiceImpl implements UserService {
     @PersistenceContext
     private EntityManager entityManager;
 
-
+    @Override
+    @Transactional(readOnly = true)
+    public List<UserBasicInfo> getAllBasicInfo() {
+        return userRepository.getBasicInfoByStatus(UserStatus.ACTIVE);
+    }
 
     @Override
     public UserDetailResponse getUser(long userId) {
@@ -52,12 +62,77 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
+
     @Override
-    @Transactional(readOnly = true)
-    public List<UserBasicInfo> getAllBasicInfo() {
-        return userRepository.getBasicInfoByStatus(UserStatus.ACTIVE);
+    public long saveUser(UserRequestDto request) {
+        User user = User.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .dateOfBirth(request.getDateOfBirth())
+                .gender(request.getGender())
+                .phone(request.getPhone())
+                .email(request.getEmail())
+                .username(request.getUsername())
+                .password(request.getPassword())
+                .status(request.getStatus())
+                .type(UserType.valueOf(request.getType().toUpperCase()))
+                .build();
+        request.getAddresses().forEach(a ->
+                user.saveAddress(Address.builder()
+                        .apartmentNumber(a.getApartmentNumber())
+                        .floor(a.getFloor())
+                        .building(a.getBuilding())
+                        .streetNumber(a.getStreetNumber())
+                        .street(a.getStreet())
+                        .city(a.getCity())
+                        .country(a.getCountry())
+                        .addressType(a.getAddressType())
+                        .build()));
+
+        userRepository.save(user);
+
+        log.info("User has save!");
+
+        return user.getId();
     }
 
+    @Override
+    public void updateUser(long userId, UserRequestDto request) {
+        User user = getUserById(userId);
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setDateOfBirth(request.getDateOfBirth());
+        user.setGender(request.getGender());
+        user.setPhone(request.getPhone());
+        if (!request.getEmail().equals(user.getEmail())) {
+            // check email from database if not exist then allow update email otherwise throw exception
+            user.setEmail(request.getEmail());
+        }
+        user.setUsername(request.getUsername());
+        user.setPassword(request.getPassword());
+        user.setStatus(request.getStatus());
+        user.setType(UserType.valueOf(request.getType().toUpperCase()));
+        user.setAddresses(convertToAddress(request.getAddresses()));
+        userRepository.save(user);
+
+        log.info("User updated successfully");
+    }
+
+    @Override
+    public void changeStatus(long userId, UserStatus status) {
+        User user = getUserById(userId);
+        user.setStatus(status);
+        userRepository.save(user);
+        log.info("status changed");
+    }
+
+    @Override
+    public void deleteUser(long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new ResourceNotFoundException("User not found with id " + userId);
+        }
+        userRepository.deleteById(userId);
+    }
 
 
     @Override
@@ -164,6 +239,23 @@ public class UserServiceImpl implements UserService {
 
     private User getUserById(long userId) {
         return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
+    }
+
+    private Set<Address> convertToAddress(Set<AddressDTO> addresses) {
+        Set<Address> result = new HashSet<>();
+        addresses.forEach(a ->
+                result.add(Address.builder()
+                        .apartmentNumber(a.getApartmentNumber())
+                        .floor(a.getFloor())
+                        .building(a.getBuilding())
+                        .streetNumber(a.getStreetNumber())
+                        .street(a.getStreet())
+                        .city(a.getCity())
+                        .country(a.getCountry())
+                        .addressType(a.getAddressType())
+                        .build())
+        );
+        return result;
     }
 
     //    List<Sort.Order> orders = new ArrayList<>();

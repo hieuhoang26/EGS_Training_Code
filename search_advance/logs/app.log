@@ -1,0 +1,53 @@
+2025-12-10 10:25:40 INFO  [background-preinit] o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.0.1.Final
+2025-12-10 10:25:40 INFO  [restartedMain] o.e.s.SearchAdvanceApplication - Starting SearchAdvanceApplication using Java 17.0.6 with PID 10404 (D:\egs_train\search_advance\target\classes started by Acer in D:\egs_train\search_advance)
+2025-12-10 10:25:40 INFO  [restartedMain] o.e.s.SearchAdvanceApplication - No active profile set, falling back to 1 default profile: "default"
+2025-12-10 10:25:40 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-12-10 10:25:40 INFO  [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-12-10 10:25:41 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-10 10:25:41 INFO  [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 43 ms. Found 2 JPA repository interfaces.
+2025-12-10 10:25:41 INFO  [restartedMain] o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-12-10 10:25:41 INFO  [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-12-10 10:25:41 INFO  [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-10 10:25:41 INFO  [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.14]
+2025-12-10 10:25:41 INFO  [restartedMain] o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1167 ms
+2025-12-10 10:25:42 INFO  [restartedMain] o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-10 10:25:42 INFO  [restartedMain] org.hibernate.Version - HHH000412: Hibernate ORM core version 7.1.8.Final
+2025-12-10 10:25:42 INFO  [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-10 10:25:42 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-12-10 10:25:42 INFO  [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@42003f0
+2025-12-10 10:25:42 INFO  [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-12-10 10:25:42 WARN  [restartedMain] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-10 10:25:42 INFO  [restartedMain] o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [jdbc:postgresql://localhost:5432/jpa_ex]
+	Database driver: PostgreSQL JDBC Driver
+	Database dialect: PostgreSQLDialect
+	Database version: 16.3
+	Default catalog/schema: jpa_ex/public
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: none
+	Pool: DatasourceConnectionProviderImpl
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-12-10 10:25:42 WARN  [restartedMain] org.hibernate.orm.deprecation - HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.example.search_advance.model.Address.createdAt.
+2025-12-10 10:25:42 WARN  [restartedMain] org.hibernate.orm.deprecation - HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.example.search_advance.model.Address.updatedAt.
+2025-12-10 10:25:42 WARN  [restartedMain] org.hibernate.orm.deprecation - HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.example.search_advance.model.User.createdAt.
+2025-12-10 10:25:42 WARN  [restartedMain] org.hibernate.orm.deprecation - HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.example.search_advance.model.User.updatedAt.
+2025-12-10 10:25:42 WARN  [restartedMain] org.hibernate.orm.deprecation - HHH90000033: Encountered use of deprecated annotation [interface jakarta.persistence.Temporal] at org.example.search_advance.model.User.dateOfBirth.
+2025-12-10 10:25:43 INFO  [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-10 10:25:43 INFO  [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-10 10:25:43 INFO  [restartedMain] o.s.d.j.r.q.QueryEnhancerFactories - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-10 10:25:44 WARN  [restartedMain] o.s.b.j.a.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-10 10:25:44 INFO  [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-12-10 10:25:44 INFO  [restartedMain] o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-12-10 10:25:44 INFO  [restartedMain] o.e.s.SearchAdvanceApplication - Started SearchAdvanceApplication in 4.685 seconds (process running for 5.271)
+2025-12-10 10:25:51 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-10 10:25:52 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-10 10:25:52 INFO  [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-12-10 10:25:52 INFO  [http-nio-8080-exec-2] o.e.s.controller.UserController - Request get user detail, userId=1
+2025-12-10 10:25:52 ERROR [http-nio-8080-exec-2] o.e.s.controller.UserController - errorMessage=User not found
+2025-12-10 10:26:21 INFO  [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-12-10 10:26:22 INFO  [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-12-10 10:26:22 INFO  [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-10 10:26:22 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-12-10 10:26:22 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

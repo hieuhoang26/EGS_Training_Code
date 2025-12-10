@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.search_advance.dto.request.UserRequestDto;
 import org.example.search_advance.dto.response.ResponseData;
 import org.example.search_advance.dto.response.ResponseError;
 import org.example.search_advance.dto.response.UserBasicInfo;
@@ -15,6 +16,7 @@ import org.example.search_advance.model.User;
 import org.example.search_advance.service.AddressService;
 import org.example.search_advance.service.UserService;
 import org.example.search_advance.util.Gender;
+import org.example.search_advance.util.UserStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +34,61 @@ public class UserController {
 
     private final UserService userService;
     private final AddressService addressService;
+
+    @Operation(method = "POST", summary = "Add new user")
+    @PostMapping
+    public ResponseData<Long> addUser(@Valid @RequestBody UserRequestDto user) {
+        log.info("Request add user, {} {}", user.getFirstName(), user.getLastName());
+
+        try {
+            long userId = userService.saveUser(user);
+            return new ResponseData<>(HttpStatus.CREATED.value(), "Add user Success", userId);
+        } catch (Exception e) {
+            log.error("errorMessage={}", e.getMessage(), e.getCause());
+            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Add user fail");
+        }
+    }
+    @Operation(summary = "Update user", description = "Send a request via this API to update user")
+    @PutMapping("/{userId}")
+    public ResponseData<?> updateUser(@PathVariable @Min(1) long userId, @Valid @RequestBody UserRequestDto user) {
+        log.info("Request update userId={}", userId);
+
+        try {
+            userService.updateUser(userId, user);
+            return new ResponseData<>(HttpStatus.ACCEPTED.value(), "Updated");
+        } catch (Exception e) {
+            log.error("errorMessage={}", e.getMessage(), e.getCause());
+            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Update user fail");
+        }
+    }
+
+    @Operation(summary = "Change status of user", description = "Send a request via this API to change status of user")
+    @PatchMapping("/{userId}")
+    public ResponseData<?> updateStatus(@Min(1) @PathVariable int userId, @RequestParam UserStatus status) {
+        log.info("Request change status, userId={}", userId);
+
+        try {
+            userService.changeStatus(userId, status);
+            return new ResponseData<>(HttpStatus.ACCEPTED.value(), "Changed");
+        } catch (Exception e) {
+            log.error("errorMessage={}", e.getMessage(), e.getCause());
+            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Change status fail");
+        }
+    }
+
+    @Operation(summary = "Delete user permanently", description = "Send a request via this API to delete user permanently")
+    @DeleteMapping("/{userId}")
+    public ResponseData<?> deleteUser(@PathVariable @Min(value = 1, message = "userId must be greater than 0") int userId) {
+        log.info("Request delete userId={}", userId);
+
+        try {
+            userService.deleteUser(userId);
+            return new ResponseData<>(HttpStatus.NO_CONTENT.value(), "Deleted");
+        } catch (Exception e) {
+            log.error("errorMessage={}", e.getMessage(), e.getCause());
+            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Delete user fail");
+        }
+    }
 
     @Operation(summary = "Get user detail")
     @GetMapping("/{userId}")
@@ -55,6 +112,10 @@ public class UserController {
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
         }
     }
+
+
+
+
 
     @Operation(summary = "Get list of users per pageNo")
     @GetMapping("/list")
