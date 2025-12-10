@@ -10,6 +10,7 @@ import org.example.search_advance.dto.request.UserRequestDto;
 import org.example.search_advance.dto.response.PageResponse;
 import org.example.search_advance.dto.response.UserBasicInfo;
 import org.example.search_advance.dto.response.UserDetailResponse;
+import org.example.search_advance.exception.InvalidDataException;
 import org.example.search_advance.exception.ResourceNotFoundException;
 import org.example.search_advance.model.Address;
 import org.example.search_advance.model.User;
@@ -17,16 +18,20 @@ import org.example.search_advance.repository.UserRepository;
 import org.example.search_advance.service.UserService;
 import org.example.search_advance.util.UserStatus;
 import org.example.search_advance.util.UserType;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,6 +45,9 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private static final String LIKE_FORMAT = "%%%s%%";
+
+    @Value("${app.upload-dir}")
+    private String targetDir;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -132,6 +140,28 @@ public class UserServiceImpl implements UserService {
             throw new ResourceNotFoundException("User not found with id " + userId);
         }
         userRepository.deleteById(userId);
+    }
+
+    @Override
+    public String updateAvatar(Long id, MultipartFile file) {
+        User user = getUserById(id);
+        if (file == null || file.isEmpty()){
+            throw  new  InvalidDataException(" file is empty");
+        }
+        try {
+            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            Path targetPath = Paths.get(targetDir).resolve(filename);
+            Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+            user.setAvatar(filename);
+            userRepository.save(user);
+
+            return filename;
+
+        } catch (IOException e) {
+            log.error("Upload avatar failed", e);
+            throw new RuntimeException("Cannot upload avatar", e);
+        }
     }
 
 

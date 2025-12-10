@@ -50,6 +50,9 @@ public class User extends AbstractEntity {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "avatar")
+    private String avatar;
+
     @Enumerated(EnumType.STRING)
     @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     @Column(name = "type")

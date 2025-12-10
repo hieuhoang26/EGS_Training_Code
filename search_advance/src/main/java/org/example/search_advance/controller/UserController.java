@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.search_advance.dto.request.UserAvatarRequest;
 import org.example.search_advance.dto.request.UserRequestDto;
 import org.example.search_advance.dto.response.ResponseData;
 import org.example.search_advance.dto.response.ResponseError;
@@ -18,6 +19,7 @@ import org.example.search_advance.service.UserService;
 import org.example.search_advance.util.Gender;
 import org.example.search_advance.util.UserStatus;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,6 +91,24 @@ public class UserController {
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Delete user fail");
         }
     }
+
+    @PostMapping(
+            value = "/{userId}/avatar",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    public ResponseData<String> uploadAvatar(
+            @ModelAttribute UserAvatarRequest req
+    ) {
+        try {
+            String avatarPath = userService.updateAvatar(req.getUserId(), req.getAvatar());
+            return new ResponseData<>(HttpStatus.OK.value(), "Saved",avatarPath);
+        } catch (Exception e) {
+            log.error("errorMessage={}", e.getMessage(), e.getCause());
+            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "fail");
+        }
+
+    }
+
 
     @Operation(summary = "Get user detail")
     @GetMapping("/{userId}")
