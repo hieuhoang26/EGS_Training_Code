@@ -44,7 +44,7 @@ public class ServiceEx {
             post.setContent(content);
             post.setUser(user);
 
-            user.getPosts().add(post);
+            user.addPost(post);
 
             // Persist post (user cũng được)
             session.persist(post);

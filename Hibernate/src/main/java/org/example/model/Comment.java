@@ -38,5 +38,4 @@ public class Comment {
     )
     private List<Comment> replies = new ArrayList<>();
 
-    // getters/setters
 }

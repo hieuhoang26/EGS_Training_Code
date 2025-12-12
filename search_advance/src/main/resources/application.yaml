@@ -15,13 +15,13 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     defer-datasource-initialization: true
-  sql:
-    init:
-      mode: always
-      continue-on-error: true
-      data-locations: classpath:data.sql
+#  sql:
+#    init:
+#      mode: always
+#      continue-on-error: true
+#      data-locations: classpath:data.sql
   servlet:
     multipart:
       max-file-size: 10MB
@@ -55,12 +55,17 @@ logging:
 
     # spring
     org.springframework.web: INFO
-    org.springframework.security: DEBUG
-    org.springframework.jdbc.core: TRACE
+    org.springframework.security: TRACE
+#    org.springframework.jdbc.core: TRACE
 
   pattern:
     console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
 
+jwt:
+  expiryHour: 1
+  expiryDay: 14
+  accessKey: c2VjcmV0QGtleS5hcGlfaGFzX2JlZW5fZGVzaWduZWRfYnlfVGF5TFE=
+  refreshKey: 9k1jJAWAKQCnCEz1pwcPNegbHoLugf9hgEnn6sz5pFc=
 
 
 
