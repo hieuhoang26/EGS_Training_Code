@@ -26,35 +26,35 @@ import static org.springframework.http.HttpStatus.OK;
 public class AuthController {
     private final AuthService authService;
 
-    @PostMapping(Uri.LOGIN)
-    public ResponseData login(@RequestBody LogInRequest request) {
-        try {
-            TokenResponse rs = authService.login(request);
-            log.info(rs.toString());
-            return new ResponseData(OK.value(), "Login successfully", rs);
-        } catch (Exception e) {
-            log.error("errorMessage={}", e.getMessage(), e.getCause());
-            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Update user fail");
-        }
-    }
-
-    @PostMapping(Uri.SIGNUP)
-    public ResponseData signUp(@RequestBody SignUpRequest request) {
-        try {
-            return new ResponseData<>(OK.value(), "User has create successfully", authService.signUp(request));
-        } catch (Exception e) {
-            log.error("errorMessage={}", e.getMessage(), e.getCause());
-            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Create user fail");
-        }
-    }
-
-    @PostMapping(Uri.REFRESH)
-    public ResponseData<TokenResponse> refresh(HttpServletRequest request) {
-        try {
-            return new ResponseData<>(OK.value(), "Refresh", authService.refresh(request));
-        } catch (Exception e) {
-            log.error("errorMessage={}", e.getMessage(), e.getCause());
-            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "fail");
-        }
-    }
+//    @PostMapping(Uri.LOGIN)
+//    public ResponseData login(@RequestBody LogInRequest request) {
+//        try {
+//            TokenResponse rs = authService.login(request);
+//            log.info(rs.toString());
+//            return new ResponseData(OK.value(), "Login successfully", rs);
+//        } catch (Exception e) {
+//            log.error("errorMessage={}", e.getMessage(), e.getCause());
+//            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Update user fail");
+//        }
+//    }
+//
+//    @PostMapping(Uri.SIGNUP)
+//    public ResponseData signUp(@RequestBody SignUpRequest request) {
+//        try {
+//            return new ResponseData<>(OK.value(), "User has create successfully", authService.signUp(request));
+//        } catch (Exception e) {
+//            log.error("errorMessage={}", e.getMessage(), e.getCause());
+//            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Create user fail");
+//        }
+//    }
+//
+//    @PostMapping(Uri.REFRESH)
+//    public ResponseData<TokenResponse> refresh(HttpServletRequest request) {
+//        try {
+//            return new ResponseData<>(OK.value(), "Refresh", authService.refresh(request));
+//        } catch (Exception e) {
+//            log.error("errorMessage={}", e.getMessage(), e.getCause());
+//            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "fail");
+//        }
+//    }
 }

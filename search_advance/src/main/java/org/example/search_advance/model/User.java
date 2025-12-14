@@ -21,7 +21,6 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@ToString
 @Table(name = "tbl_user")
 public class User extends AbstractEntity implements UserDetails {
 
@@ -65,11 +64,14 @@ public class User extends AbstractEntity implements UserDetails {
     @Column(name = "status")
     private UserStatus status;
 
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     private Set<Address> addresses = new HashSet<>();
 
+
     @OneToMany(mappedBy = "user")
     private Set<UserHasRole> roles = new HashSet<>();
+
 
     @OneToMany(mappedBy = "user")
     private Set<GroupHasUser> groups = new HashSet<>();
@@ -119,5 +121,6 @@ public class User extends AbstractEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }
 

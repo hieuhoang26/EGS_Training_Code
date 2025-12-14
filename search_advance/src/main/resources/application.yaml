@@ -55,7 +55,11 @@ logging:
 
     # spring
     org.springframework.web: INFO
-    org.springframework.security: TRACE
+    org.springframework.security: DEBUG
+    org.logging.level.org.springframework.security.web.FilterChainProxy: TRACE
+    org.logging.level.org.springframework.security.web.context: TRACE
+    org.logging.level.org.springframework.security.authentication: TRACE
+    org.logging.level.org.springframework.security.authorization: TRACE
 #    org.springframework.jdbc.core: TRACE
 
   pattern:

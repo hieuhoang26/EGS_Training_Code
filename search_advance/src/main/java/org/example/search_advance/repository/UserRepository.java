@@ -32,7 +32,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<UserBasicInfo> getBasicInfoByStatus(@Param("statusFilter") UserStatus status);
 
 
-     Optional<User>  findByEmail(String email);
+    @Query("SELECT u FROM User u JOIN FETCH u.roles WHERE u.email = :email")
+     Optional<User>  findByEmail(@Param("email") String email);
 
      boolean existsByEmail(String email);
 }
