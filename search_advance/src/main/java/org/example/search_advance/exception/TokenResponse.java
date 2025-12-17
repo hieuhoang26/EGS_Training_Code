@@ -1,4 +1,4 @@
-package org.example.search_advance.dto.response;
+package org.example.search_advance.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

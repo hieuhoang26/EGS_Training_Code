@@ -1,0 +1,72 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  devtools:
+    add-properties: true
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/recipe_mn}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:12345678}
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/changelog-master.yaml
+
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+#    show-sql: true
+    hibernate:
+      ddl-auto: none
+#    defer-datasource-initialization: true
+
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+openapi:
+  service:
+    api-docs: recpice_mn
+    server: http://localhost:${server.port}
+    title: API Document
+    version: 1.0.0
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+#    liquibase: DEBUG
+
+    # app
+    com.example.demo: DEBUG
+    com.example.demo.user: TRACE
+    com.example.demo.service: WARN
+    com.example.demo.repository: ERROR
+
+    # spring
+    org.springframework.web: debug
+    org.springframework.security: DEBUG
+    org.logging.level.org.springframework.security.web.FilterChainProxy: TRACE
+    org.logging.level.org.springframework.security.web.context: TRACE
+    org.logging.level.org.springframework.security.authentication: TRACE
+    org.logging.level.org.springframework.security.authorization: TRACE
+
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
+
+jwt:
+  expiryHour: 3600
+  expiryDay: 86400
+  publicKey: classpath:app.pub
+  privateKey: classpath:app.key

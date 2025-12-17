@@ -1,4 +1,4 @@
-package org.example.search_advance.exception;//package com.hhh.recipe_mn.exception;
+//package com.hhh.recipe_mn.exception;
 //
 //import io.swagger.v3.oas.annotations.media.Content;
 //import io.swagger.v3.oas.annotations.media.ExampleObject;

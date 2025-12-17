@@ -1,4 +1,4 @@
-package org.example.search_advance.dto.response;
+package com.hhh.recipe_mn.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;

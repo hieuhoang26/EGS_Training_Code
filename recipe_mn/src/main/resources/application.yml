@@ -1,0 +1,7 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: recipe_mn
+  profiles:
+    active: ${ENV:dev}
