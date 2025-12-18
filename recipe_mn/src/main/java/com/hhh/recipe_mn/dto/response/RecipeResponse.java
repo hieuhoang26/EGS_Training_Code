@@ -23,4 +23,6 @@ public class RecipeResponse {
     private List<RecipeStepResponse> steps;
     private List<RecipeIngredientResponse> ingredients;
     private List<String> imageUrls;
+    private Long version;
+
 }

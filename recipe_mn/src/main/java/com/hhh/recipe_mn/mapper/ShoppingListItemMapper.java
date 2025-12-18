@@ -16,8 +16,8 @@ import java.util.List;
 )
 public interface ShoppingListItemMapper {
 
-    @Mapping(target = "ingredientId", source = "ingredient.id")
-    @Mapping(target = "ingredientName", source = "ingredient.canonicalName")
+//    @Mapping(target = "ingredientId", source = "ingredient.id")
+//    @Mapping(target = "ingredientName", source = "ingredient.canonicalName")
     ShoppingListItemResponse toResponse(ShoppingListItem item);
 
     List<ShoppingListItemResponse> toResponses(List<ShoppingListItem> items);

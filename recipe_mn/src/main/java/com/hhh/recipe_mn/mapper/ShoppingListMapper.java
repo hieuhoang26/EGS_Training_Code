@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ShoppingListMapper {
 
-    @Mapping(target = "recipes", source = "shoppingListRecipes")
+//    @Mapping(target = "recipes", source = "shoppingListRecipes")
     ShoppingListResponse toResponse(ShoppingList shoppingList);
 
     List<ShoppingListResponse> toResponses(List<ShoppingList> shoppingLists);

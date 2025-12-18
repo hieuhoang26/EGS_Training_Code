@@ -11,7 +11,7 @@ import java.util.Set;
 @Mapper(componentModel = "spring")
 public interface ShoppingListRecipeMapper {
 
-    @Mapping(target = "recipeId", source = "recipe.id")
+//    @Mapping(target = "recipeId", source = "recipe.id")
     ShoppingListRecipeResponse toResponse(ShoppingListRecipe recipe);
 
     List<ShoppingListRecipeResponse> toResponses(Set<ShoppingListRecipe> recipes);

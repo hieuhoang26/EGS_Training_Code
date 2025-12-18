@@ -50,7 +50,7 @@ public class ShoppingListServiceImpl  implements ShoppingListService {
 
         // Aggregate
         Map<IngredientKey, BigDecimal> consolidated =
-                ingredientAggregator.aggregate(recipeIngredients);
+                ingredientAggregator.aggregateV2(recipeIngredients);
 
         // shopping list
         ShoppingList shoppingList = new ShoppingList();

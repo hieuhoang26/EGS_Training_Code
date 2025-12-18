@@ -4,7 +4,6 @@ import com.hhh.recipe_mn.model.User;
 import com.hhh.recipe_mn.utlis.TokenType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 
 import java.util.Map;
 

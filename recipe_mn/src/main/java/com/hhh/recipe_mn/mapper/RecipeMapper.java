@@ -15,17 +15,17 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface RecipeMapper {
 //    @Mapping(target = "name", source = "user.firstName")
-    @Mapping(target = "cuisineName", source = "cuisine.name")
-    @Mapping(target = "cuisineCode", source = "cuisine.code")
-    @Mapping(target = "steps", source = "steps")
-    @Mapping(target = "ingredients", source = "ingredients")
+//    @Mapping(target = "cuisineName", source = "cuisine.name")
+//    @Mapping(target = "cuisineCode", source = "cuisine.code")
+//    @Mapping(target = "steps", source = "steps")
+//    @Mapping(target = "ingredients", source = "ingredients")
 //    @Mapping(target = "imageUrls", source = "images")
     RecipeResponse toResponse(Recipe recipe);
 
     List<RecipeResponse> toResponseList(List<Recipe> recipes);
 
 
-    @Mapping(target = "ingredientName", source = "ingredient.canonicalName")
+//    @Mapping(target = "ingredientName", source = "ingredient.canonicalName")
     RecipeIngredientResponse toIngredientResponse(RecipeIngredient entity);
 
     RecipeStepResponse toStepResponse(RecipeStep entity);

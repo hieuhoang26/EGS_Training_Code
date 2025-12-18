@@ -1,8 +1,7 @@
 package com.hhh.recipe_mn.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -10,6 +9,9 @@ import java.util.UUID;
 @Table(name = "recipe_images")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class RecipeImage extends AbstractEntity {
     @Id
     @GeneratedValue

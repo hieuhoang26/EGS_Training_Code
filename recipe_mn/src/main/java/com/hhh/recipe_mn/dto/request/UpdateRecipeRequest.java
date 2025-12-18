@@ -11,6 +11,9 @@ import java.util.UUID;
 
 @Data
 public class UpdateRecipeRequest {
+    @NotNull(message = "Version is required")
+    private Long version;
+
     @Size(min = 3, max = 100, message = "Recipe name must be between 3 and 100 characters")
     private String name;
 

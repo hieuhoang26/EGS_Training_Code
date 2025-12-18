@@ -1,10 +1,14 @@
 package com.hhh.recipe_mn.exception;
 
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.Date;
@@ -12,6 +16,7 @@ import java.util.Date;
 import static org.springframework.http.HttpStatus.*;
 
 
+@RestControllerAdvice
 public class GlobalExceptionHandler {
     /**
      * Handle exception when validate data
@@ -87,5 +92,17 @@ public class GlobalExceptionHandler {
         errorResponse.setMessage(e.getMessage());
 
         return errorResponse;
+    }
+    @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
+    public ResponseEntity<ErrorResponse> handleOptimisticLock(
+            ObjectOptimisticLockingFailureException ex) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setTimestamp(new Date());
+        errorResponse.setStatus(HttpStatus.CONFLICT.value());
+        errorResponse.setError(CONFLICT.getReasonPhrase());
+        errorResponse.setMessage("Recipe was updated by another user. Please reload and try again");
+
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(errorResponse);
     }
 }

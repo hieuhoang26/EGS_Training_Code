@@ -2,39 +2,69 @@ package com.hhh.recipe_mn.service.imp;
 
 import com.hhh.recipe_mn.model.User;
 import com.hhh.recipe_mn.security.JwtService;
+import com.hhh.recipe_mn.utlis.JwtKeyLoader;
 import com.hhh.recipe_mn.utlis.TokenType;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.*;
 import java.util.function.Function;
 
 import static com.hhh.recipe_mn.utlis.TokenType.ACCESS_TOKEN;
 import static com.hhh.recipe_mn.utlis.TokenType.REFRESH_TOKEN;
 
 @Service
+@RequiredArgsConstructor
 public class JwtServiceImp implements JwtService {
+    /*
+    Best practice:
+        private key: sign, verify
+        public key: verify
+    Flow:
+        [Server] --(sign =  private key)--> JWT --> [Client]
+        [Client] --(send JWT)--> [Server]
+        [Server] --(verify by public key)--> payload
+     SignatureAlgorithm:
+        - Symmetric:  HS256 - Secret Key
+        - Asymmetric : RS256 - Private Key & Public Key
+     */
+
+
+    private final JwtKeyLoader keyLoader;
+
     @Value("${jwt.expiryHour}")
     private long expiryHour;
 
     @Value("${jwt.expiryDay}")
     private long expiryDay;
 
-    @Value("${jwt.accessKey}")
-    private String accessKey;
+    @Value("${jwt.publicKeyAccess}")
+    private String publicKeyAccess;
 
-    @Value("${jwt.refreshKey}")
-    private String refreshKey;
+    @Value("${jwt.privateKeyAccess}")
+    private String privateKeyAccess;
+
+    @Value("${jwt.publicKeyRefresh}")
+    private String publicKeyRefresh;
+
+
+    @Value("${jwt.privateKeyRefresh}")
+    private String privateKeyRefresh;
 
     @Override
     public String generateToken(UserDetails userDetail) {
@@ -79,7 +109,7 @@ public class JwtServiceImp implements JwtService {
                 .setSubject(email)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * expiryHour))
-                .signWith(getKey(ACCESS_TOKEN), SignatureAlgorithm.HS256)
+                .signWith(getPrivateKey(ACCESS_TOKEN), SignatureAlgorithm.RS256)
                 .compact();
     }
 
@@ -90,16 +120,22 @@ public class JwtServiceImp implements JwtService {
                 .setSubject(email)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * expiryDay))
-                .signWith(getKey(REFRESH_TOKEN), SignatureAlgorithm.HS256)
+                .signWith(getPrivateKey(REFRESH_TOKEN), SignatureAlgorithm.RS256)
                 .compact();
     }
 
-    private Key getKey(TokenType type) {
-        if (ACCESS_TOKEN.equals(type))
-            return Keys.hmacShaKeyFor(Decoders.BASE64.decode(accessKey));
-        else
-            return Keys.hmacShaKeyFor(Decoders.BASE64.decode(refreshKey));
+    private PrivateKey getPrivateKey(TokenType type) {
+
+        String path = (type == ACCESS_TOKEN ? privateKeyAccess : privateKeyRefresh);
+        return keyLoader.loadPrivateKey(path);
     }
+
+    private PublicKey getPublicKey(TokenType type) {
+
+        String path = (type == REFRESH_TOKEN ? publicKeyRefresh : publicKeyAccess);
+        return keyLoader.loadPublicKey(path);
+    }
+
 
     private <T> T extractClaim(String token, TokenType type, Function<Claims, T> claimResolver) {
         final Claims claims = extraAllClaim(token, type);
@@ -107,7 +143,7 @@ public class JwtServiceImp implements JwtService {
     }
 
     private Claims extraAllClaim(String token, TokenType type) {
-        return Jwts.parser().setSigningKey(getKey(type)).build().parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(getPublicKey(type)).build().parseClaimsJws(token).getBody();
     }
 
     private boolean isTokenExpired(String token, TokenType type) {

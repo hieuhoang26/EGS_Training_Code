@@ -18,6 +18,10 @@ public class Recipe extends AbstractEntity {
     @GeneratedValue
     private UUID id;
 
+//    @Version
+//    @Column(name = "version", nullable = false)
+//    private Long version;
+
     @Column(name = "name")
     private String name;
 

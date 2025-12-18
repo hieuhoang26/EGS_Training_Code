@@ -1,9 +1,6 @@
 package com.hhh.recipe_mn.service.imp;
 
-import com.hhh.recipe_mn.dto.request.CreateRecipeRequest;
-import com.hhh.recipe_mn.dto.request.IngredientRequest;
-import com.hhh.recipe_mn.dto.request.StepRequest;
-import com.hhh.recipe_mn.dto.request.UpdateRecipeRequest;
+import com.hhh.recipe_mn.dto.request.*;
 import com.hhh.recipe_mn.dto.response.PageResponse;
 import com.hhh.recipe_mn.dto.response.RecipeResponse;
 import com.hhh.recipe_mn.model.*;
@@ -14,13 +11,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -60,8 +57,18 @@ public class RecipeServiceImp implements RecipeService {
 
         // steps
         addStepsToRecipe(recipe, req.getSteps());
+
+        // images
+        for (ImageRequest item : req.getImages() ){
+            RecipeImage image = RecipeImage.builder()
+                    .imageUrl(item.getUrl())
+                    .build();
+            recipe.addImage(image);
+        }
         recipeRepository.save(recipe);
         return recipe.getId();
+
+
     }
     private void addIngredientsToRecipe(Recipe recipe, List<IngredientRequest> ingredientRequests) {
         if (ingredientRequests == null || ingredientRequests.isEmpty()) {
@@ -93,6 +100,7 @@ public class RecipeServiceImp implements RecipeService {
     }
 
     @Override
+    @Transactional
     public void update(UUID recipeId, UUID userId, UpdateRecipeRequest req) {
         Recipe recipe = recipeRepository.findById(recipeId)
                 .orElseThrow(() -> new EntityNotFoundException(
@@ -100,6 +108,7 @@ public class RecipeServiceImp implements RecipeService {
         if (!recipe.getUser().getId().equals(userId)) {
             throw new AccessDeniedException("You are not allowed to update this recipe");
         }
+//        recipe.setVersion(req.getVersion());
         if (req.getName() != null) {
             recipe.setName(req.getName().trim());
         }
@@ -139,7 +148,10 @@ public class RecipeServiceImp implements RecipeService {
         if (req.getSteps() != null) {
             updateSteps(recipe, req.getSteps());
         }
-
+        // images
+        if (req.getImages() != null) {
+            updateImages(recipe, req.getImages());
+        }
         recipeRepository.save(recipe);
     }
 
@@ -182,6 +194,43 @@ public class RecipeServiceImp implements RecipeService {
         }
         recipe.reorderSteps();
     }
+    private void updateImages(Recipe recipe, List<ImageRequest> reqImages) {
+        // id : img
+        Map<UUID, RecipeImage> currentImages = recipe.getImages().stream()
+                .collect(Collectors.toMap(RecipeImage::getId, Function.identity()));
+
+        Set<RecipeImage> updatedImages = new HashSet<>();
+
+        for (ImageRequest req : reqImages) {
+
+            // old img
+            if (req.getId() != null) {
+                RecipeImage image = currentImages.get(req.getId());
+
+                if (image == null) {
+                    throw new EntityNotFoundException(
+                            "Image not found with id: " + req.getId());
+                }
+
+                image.setImageUrl(req.getUrl().trim());
+                image.setPrimary(Boolean.TRUE.equals(req.getIsPrimary()));
+                updatedImages.add(image);
+            }
+            // new img
+            else {
+                RecipeImage newImage = new RecipeImage();
+                newImage.setImageUrl(req.getUrl().trim());
+                newImage.setPrimary(Boolean.TRUE.equals(req.getIsPrimary()));
+                newImage.setRecipe(recipe);
+                updatedImages.add(newImage);
+            }
+        }
+
+        // clear + add lại -> orphanRemoval tự xoá ảnh bị remove
+        recipe.getImages().clear();
+        recipe.getImages().addAll(updatedImages);
+    }
+
 
 
 

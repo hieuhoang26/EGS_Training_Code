@@ -68,9 +68,8 @@ logging:
 jwt:
   expiryHour: 1
   expiryDay: 14
-  accessKey: c2VjcmV0QGtleS5hcGlfaGFzX2JlZW5fZGVzaWduZWRfYnlfVGF5TFE=
-  refreshKey: 9k1jJAWAKQCnCEz1pwcPNegbHoLugf9hgEnn6sz5pFc=
-#  expiryHour: 3600
-#  expiryDay: 86400
-#  publicKey: classpath:app.pub
-#  privateKey: classpath:app.key
+  publicKeyAccess: classpath:public-key.pem
+  privateKeyAccess: classpath:private-key.pem
+
+  publicKeyRefresh: classpath:public-key.pem
+  privateKeyRefresh: classpath:private-key.pem

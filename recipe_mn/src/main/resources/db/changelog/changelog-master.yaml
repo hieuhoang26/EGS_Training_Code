@@ -5,3 +5,5 @@ databaseChangeLog:
       file: db/changelog/002-repice-ingredient.yaml
   - include:
       file: db/changelog/003-shop-list.yaml
+  - include:
+      file: db/changelog/004-unit-conversion.yaml
