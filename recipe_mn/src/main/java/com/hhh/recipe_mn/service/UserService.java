@@ -14,4 +14,8 @@ public interface UserService  {
     Set<String> extractAuthorities(User user);
 
     User getById(UUID uuid);
+
+    boolean existUser(String email);
+
+    void save(User user);
 }

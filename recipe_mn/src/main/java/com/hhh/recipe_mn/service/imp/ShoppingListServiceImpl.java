@@ -6,9 +6,12 @@ import com.hhh.recipe_mn.repository.*;
 import com.hhh.recipe_mn.service.ShoppingListService;
 import com.hhh.recipe_mn.service.UserService;
 import com.hhh.recipe_mn.utlis.IngredientAggregator;
-import jakarta.transaction.Transactional;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,6 +21,7 @@ import java.util.UUID;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class ShoppingListServiceImpl  implements ShoppingListService {
     private final UserService userService;
     private final RecipeIngredientRepository recipeIngredientRepository;
@@ -79,5 +83,20 @@ public class ShoppingListServiceImpl  implements ShoppingListService {
         return shoppingListRepository.save(shoppingList);
 
 
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ShoppingList getDetail(UUID shoppingListId, UUID userId) {
+        ShoppingList shoppingList = shoppingListRepository
+                .findDetailById(shoppingListId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("ShoppingList not found"));
+
+        if (!shoppingList.getUser().getId().equals(userId)) {
+            throw new AccessDeniedException("Access denied");
+        }
+
+        return shoppingList;
     }
 }

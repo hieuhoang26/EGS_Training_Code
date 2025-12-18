@@ -8,6 +8,9 @@ import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.JoinColumnOrFormula;
 import org.hibernate.type.SqlTypes;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 import java.util.*;
@@ -19,7 +22,24 @@ import java.util.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User extends AbstractEntity  {
+@NamedEntityGraph(
+        name = "User.roles.permissions",
+        attributeNodes = {
+                @NamedAttributeNode(
+                        value = "roles",
+                        subgraph = "rolesSubgraph"
+                )
+        },
+        subgraphs = {
+                @NamedSubgraph(
+                        name = "rolesSubgraph",
+                        attributeNodes = {
+                                @NamedAttributeNode("permissions")
+                        }
+                )
+        }
+)
+public class User extends AbstractEntity implements UserDetails {
 
     @Id
     @GeneratedValue
@@ -74,7 +94,51 @@ public class User extends AbstractEntity  {
     private List<ShoppingList> shoppingLists = new ArrayList<>();
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        List<String> roleList = roles.stream().map(Role::getName).toList();
+//        return roleList.stream().map(s -> new SimpleGrantedAuthority(s.toUpperCase())).toList();
+        Set<GrantedAuthority> authorities = new HashSet<>();
 
+        // ROLE_
+        roles.forEach(role ->
+                authorities.add(new SimpleGrantedAuthority( role.getName()))
+        );
 
+        // PERMISSION
+        roles.stream()
+                .flatMap(role -> role.getPermissions().stream())
+                .map(Permission::getName)
+                .forEach(p ->
+                        authorities.add(new SimpleGrantedAuthority(p))
+                );
+
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
 

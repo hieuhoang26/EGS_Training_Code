@@ -11,4 +11,5 @@ public interface ShoppingListService {
             String name,
             List<UUID> recipeIds
     );
+    ShoppingList getDetail(UUID shoppingListId, UUID userId);
 }

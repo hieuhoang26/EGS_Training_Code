@@ -13,4 +13,8 @@ public class Uri {
 
     public static final String RECIPE = "/api/v1/recipe";
     public static final String SEARCH = "/api/v1/search";
+
+    /* ShopList */
+
+    public static final String SHOP = "/api/v1/shopping";
 }

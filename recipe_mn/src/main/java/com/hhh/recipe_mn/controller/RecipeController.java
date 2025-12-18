@@ -3,6 +3,7 @@ package com.hhh.recipe_mn.controller;
 import com.hhh.recipe_mn.dto.request.CreateRecipeRequest;
 import com.hhh.recipe_mn.dto.request.RecipeSearchRequest;
 import com.hhh.recipe_mn.dto.request.UpdateRecipeRequest;
+import com.hhh.recipe_mn.dto.response.PageResponse;
 import com.hhh.recipe_mn.dto.response.RecipeResponse;
 import com.hhh.recipe_mn.dto.response.ResponseData;
 import com.hhh.recipe_mn.dto.response.ResponseError;
@@ -10,6 +11,7 @@ import com.hhh.recipe_mn.mapper.RecipeMapper;
 import com.hhh.recipe_mn.model.Recipe;
 import com.hhh.recipe_mn.service.RecipeService;
 import com.hhh.recipe_mn.service.SearchService;
+import com.hhh.recipe_mn.utlis.PageMapper;
 import com.hhh.recipe_mn.utlis.Uri;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
@@ -19,6 +21,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -44,7 +47,7 @@ public class RecipeController {
     public ResponseData<?> update( @PathVariable UUID recipeId, @RequestParam UUID userId , @Valid @RequestBody UpdateRecipeRequest request) {
         try {
             recipeService.update(recipeId,userId,request);
-            return new ResponseData<>(HttpStatus.CREATED.value(), "Success");
+            return new ResponseData<>(HttpStatus.OK.value(), "Success");
         } catch (Exception e) {
             log.error("errorMessage={}", e.getMessage(), e.getCause());
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Fail");
@@ -54,7 +57,9 @@ public class RecipeController {
     public ResponseData<?> search(@RequestBody RecipeSearchRequest request) {
         try {
             Page<Recipe> rs = searchService.searchRecipesWithAllIngredients(request);
-            return new ResponseData<>(HttpStatus.CREATED.value(), "Success", rs.map(recipeMapper::toResponse));
+            PageResponse<List<RecipeResponse>> pageResponse =
+                    PageMapper.toPageResponse(rs, recipeMapper::toResponse);
+            return new ResponseData<>(HttpStatus.OK.value(), "Success", pageResponse);
         } catch (Exception e) {
             log.error("errorMessage={}", e.getMessage(), e.getCause());
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Add user fail");

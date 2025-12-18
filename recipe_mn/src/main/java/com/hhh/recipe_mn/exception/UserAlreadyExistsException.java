@@ -1,0 +1,8 @@
+package com.hhh.recipe_mn.exception;
+
+public class UserAlreadyExistsException extends RuntimeException {
+
+    public UserAlreadyExistsException(String identifier) {
+        super("User with identifier '" + identifier + "' already exists.");
+    }
+}

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface RecipeMapper {
-    @Mapping(target = "authorName", source = "user.firstName")
+//    @Mapping(target = "name", source = "user.firstName")
     @Mapping(target = "cuisineName", source = "cuisine.name")
     @Mapping(target = "cuisineCode", source = "cuisine.code")
     @Mapping(target = "steps", source = "steps")
@@ -25,7 +25,7 @@ public interface RecipeMapper {
     List<RecipeResponse> toResponseList(List<Recipe> recipes);
 
 
-//    @Mapping(target = "ingredientName", source = "ingredient.canonicalName")
+    @Mapping(target = "ingredientName", source = "ingredient.canonicalName")
     RecipeIngredientResponse toIngredientResponse(RecipeIngredient entity);
 
     RecipeStepResponse toStepResponse(RecipeStep entity);

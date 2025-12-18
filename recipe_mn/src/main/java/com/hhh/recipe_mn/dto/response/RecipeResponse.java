@@ -7,10 +7,9 @@ import java.util.List;
 import java.util.UUID;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+
+
+@Data
 public class RecipeResponse {
     private UUID id;
     private String name;
@@ -21,7 +20,6 @@ public class RecipeResponse {
     private boolean isPublic;
     private String cuisineName;
     private String cuisineCode;
-    private String authorName;
     private List<RecipeStepResponse> steps;
     private List<RecipeIngredientResponse> ingredients;
     private List<String> imageUrls;

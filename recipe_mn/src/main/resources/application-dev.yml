@@ -45,7 +45,7 @@ logging:
     root: INFO
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-
+    org.springframework.web.servlet.view: TRACE
 #    liquibase: DEBUG
 
     # app
@@ -66,7 +66,11 @@ logging:
     console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger.%M - %msg%n"
 
 jwt:
-  expiryHour: 3600
-  expiryDay: 86400
-  publicKey: classpath:app.pub
-  privateKey: classpath:app.key
+  expiryHour: 1
+  expiryDay: 14
+  accessKey: c2VjcmV0QGtleS5hcGlfaGFzX2JlZW5fZGVzaWduZWRfYnlfVGF5TFE=
+  refreshKey: 9k1jJAWAKQCnCEz1pwcPNegbHoLugf9hgEnn6sz5pFc=
+#  expiryHour: 3600
+#  expiryDay: 86400
+#  publicKey: classpath:app.pub
+#  privateKey: classpath:app.key

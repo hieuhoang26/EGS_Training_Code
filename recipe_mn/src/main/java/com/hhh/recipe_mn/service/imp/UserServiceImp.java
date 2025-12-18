@@ -1,19 +1,14 @@
 package com.hhh.recipe_mn.service.imp;
 
 import com.hhh.recipe_mn.exception.ResourceNotFoundException;
-import com.hhh.recipe_mn.model.Permission;
-import com.hhh.recipe_mn.model.Role;
 import com.hhh.recipe_mn.model.User;
 import com.hhh.recipe_mn.repository.UserRepository;
-import com.hhh.recipe_mn.security.SecurityUser;
 import com.hhh.recipe_mn.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -36,14 +31,8 @@ public class UserServiceImp implements UserService  {
             );
 
 
-            return new SecurityUser(user);
+            return user;
         };
-//        return username -> new SecurityUser(
-//                userRepository.findByEmail(username)
-//                        .orElseThrow(() ->
-//                                new UsernameNotFoundException("User not found with email: " + username)
-//                        )
-//        );
     }
 
     @Override
@@ -63,6 +52,16 @@ public class UserServiceImp implements UserService  {
     @Override
     public User getById(UUID uuid) {
         return userRepository.findById(uuid).orElseThrow(() -> new ResourceNotFoundException("Not Found User"));
+    }
+
+    @Override
+    public boolean existUser(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
     }
 
 

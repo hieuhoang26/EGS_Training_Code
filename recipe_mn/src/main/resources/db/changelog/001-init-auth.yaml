@@ -162,8 +162,3 @@ databaseChangeLog:
         - addUniqueConstraint:
             tableName: roles_permissions
             columnNames: role_id, permission_id
-#  - changeSet:
-#      id: auth-sample
-#      author: dev
-#      changes:
-#
