@@ -68,52 +68,16 @@ public class SecurityConfig {
     @Bean
     @Order(1)
     public SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
-        http.securityMatcher("/api/v1/**")
-                .authorizeHttpRequests(request -> request
-                        .requestMatchers("/**").permitAll()
-                        .anyRequest().permitAll());
+        http.authorizeHttpRequests(request -> request
+                        .anyRequest().permitAll())
+//                .securityMatcher("/api/v1/**")
+        ;
 
         http.sessionManagement(manager -> manager
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(preFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
-    }
-
-    @Bean
-    @Order(2)
-    public SecurityFilterChain webSecurity(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/css/**", "/js/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .csrf(Customizer.withDefaults())
-                .authenticationProvider(authenticationProvider())
-//                .formLogin(form -> form
-//                        .loginPage("/login")
-//                        .loginProcessingUrl("/doLogin")
-//                        .defaultSuccessUrl("/", true)
-//                        .usernameParameter("email")
-//                        .passwordParameter("password")
-//                        .failureUrl("/login?error=true")
-//                        .permitAll()
-//                )
-                .formLogin(Customizer.withDefaults())
-
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                )
-                .sessionManagement(sm ->
-                        sm.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                                .maximumSessions(1)   // 1 user = 1 session
-                                .maxSessionsPreventsLogin(false)
-                );
 
         return http.build();
     }
@@ -126,5 +90,44 @@ public class SecurityConfig {
                 .requestMatchers("/actuator/**", "/v3/**", "/webjars/**", "/swagger-ui*/*swagger-initializer.js",
                         "/swagger-ui*/**");
     }
+
+//    @Bean
+//    @Order(2)
+//    public SecurityFilterChain webSecurity(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/login", "/css/**", "/js/**").permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .csrf(Customizer.withDefaults())
+//                .authenticationProvider(authenticationProvider())
+////                .formLogin(form -> form
+////                        .loginPage("/login")
+////                        .loginProcessingUrl("/doLogin")
+////                        .defaultSuccessUrl("/", true)
+////                        .usernameParameter("email")
+////                        .passwordParameter("password")
+////                        .failureUrl("/login?error=true")
+////                        .permitAll()
+////                )
+//                .formLogin(Customizer.withDefaults())
+//
+//                .logout(logout -> logout
+//                        .logoutUrl("/logout")
+//                        .logoutSuccessUrl("/login")
+//                        .invalidateHttpSession(true)
+//                        .deleteCookies("JSESSIONID")
+//                )
+//                .sessionManagement(sm ->
+//                        sm.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                                .maximumSessions(1)   // 1 user = 1 session
+//                                .maxSessionsPreventsLogin(false)
+//                );
+//
+//        return http.build();
+//        // save session to DB --> spring-session-jdbc --> auto gen table
+//
+//    }
+
 
 }

@@ -2,7 +2,6 @@ package com.hhh.recipe_mn.utlis;
 
 import com.hhh.recipe_mn.dto.request.IngredientKey;
 import com.hhh.recipe_mn.model.RecipeIngredient;
-import com.hhh.recipe_mn.service.imp.RecipeIngredientView;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;

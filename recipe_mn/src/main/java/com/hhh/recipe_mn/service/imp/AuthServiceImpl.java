@@ -55,10 +55,6 @@ public class AuthServiceImpl implements AuthService {
         String refreshToken = jwtService.generateRefreshToken(user);
 
         // Role
-//        List<String> roles = user.getAuthorities().stream()
-//                .map(GrantedAuthority::getAuthority)
-//                .filter(auth -> auth.startsWith("ROLE_"))
-//                .toList();
         List<String> roles = user.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .filter(auth -> auth.startsWith("ROLE_"))

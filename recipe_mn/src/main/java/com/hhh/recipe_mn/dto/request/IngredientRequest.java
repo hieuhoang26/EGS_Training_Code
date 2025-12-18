@@ -6,10 +6,15 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+
+@Getter
+@Setter
 @Data
 public class IngredientRequest {
     @NotNull(message = "Ingredient ID is required")
@@ -21,4 +26,7 @@ public class IngredientRequest {
 
     @Size(max = 50, message = "Unit cannot exceed 50 characters")
     private String unit;
+
+    public void setName(String flour) {
+    }
 }

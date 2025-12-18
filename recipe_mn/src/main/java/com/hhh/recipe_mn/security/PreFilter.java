@@ -1,6 +1,7 @@
 package com.hhh.recipe_mn.security;
 
 import com.hhh.recipe_mn.service.UserService;
+import com.hhh.recipe_mn.utlis.Uri;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -51,13 +52,14 @@ public class PreFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String requestUri = request.getRequestURI();
+        return requestUri.startsWith(Uri.LOGIN)
+                ||  requestUri.startsWith(Uri.SIGNUP)
+                || requestUri.startsWith("/webhook")
+                || requestUri.startsWith("/api/v1/**")
+                || requestUri.startsWith("/bot");
+    }
 }
 
-//    @Override
-//    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-//        String requestUri = request.getRequestURI();
-//        return requestUri.startsWith(Uri.LOGIN)
-//                ||  requestUri.startsWith(Uri.SIGNUP)
-//                || requestUri.startsWith("/webhook")
-//                || requestUri.startsWith("/bot");
-//    }
