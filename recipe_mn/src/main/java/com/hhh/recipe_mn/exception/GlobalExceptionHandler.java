@@ -55,6 +55,7 @@ public class GlobalExceptionHandler {
 
         return errorResponse;
     }
+
     /**
      * Handle exception when the request not found data
      *
@@ -74,6 +75,7 @@ public class GlobalExceptionHandler {
 
         return errorResponse;
     }
+
     /**
      * Handle exception when internal server error
      *
@@ -93,8 +95,14 @@ public class GlobalExceptionHandler {
 
         return errorResponse;
     }
+
+    /* This happens when multiple users try to update the same record concurrently.
+     *
+     * @param ex ObjectOptimisticLockingFailureException
+     * @return ErrorResponse with HTTP 409 Conflict status
+     */
     @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
-    public ResponseEntity<ErrorResponse> handleOptimisticLock(
+    public ErrorResponse handleOptimisticLock(
             ObjectOptimisticLockingFailureException ex) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setTimestamp(new Date());
@@ -102,7 +110,6 @@ public class GlobalExceptionHandler {
         errorResponse.setError(CONFLICT.getReasonPhrase());
         errorResponse.setMessage("Recipe was updated by another user. Please reload and try again");
 
-        return ResponseEntity.status(HttpStatus.CONFLICT)
-                .body(errorResponse);
+        return errorResponse;
     }
 }

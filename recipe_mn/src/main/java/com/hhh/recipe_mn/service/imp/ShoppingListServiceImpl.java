@@ -1,8 +1,15 @@
 package com.hhh.recipe_mn.service.imp;
 
 import com.hhh.recipe_mn.dto.request.IngredientKey;
-import com.hhh.recipe_mn.model.*;
-import com.hhh.recipe_mn.repository.*;
+import com.hhh.recipe_mn.model.Recipe;
+import com.hhh.recipe_mn.model.RecipeIngredient;
+import com.hhh.recipe_mn.model.ShoppingList;
+import com.hhh.recipe_mn.model.ShoppingListItem;
+import com.hhh.recipe_mn.model.ShoppingListRecipe;
+import com.hhh.recipe_mn.model.User;
+import com.hhh.recipe_mn.repository.RecipeIngredientRepository;
+import com.hhh.recipe_mn.repository.RecipeRepository;
+import com.hhh.recipe_mn.repository.ShoppingListRepository;
 import com.hhh.recipe_mn.service.ShoppingListService;
 import com.hhh.recipe_mn.service.UserService;
 import com.hhh.recipe_mn.utlis.IngredientAggregator;
@@ -27,8 +34,6 @@ public class ShoppingListServiceImpl  implements ShoppingListService {
     private final RecipeIngredientRepository recipeIngredientRepository;
     private final RecipeRepository recipeRepository;
     private final ShoppingListRepository shoppingListRepository;
-    private final ShoppingListItemRepository shoppingListItemRepo;
-    private final ShoppingListRecipeRepository shoppingListRecipeRepo;
     private final IngredientAggregator ingredientAggregator;
     @Override
     public ShoppingList  generateFromRecipes(UUID userId, String name, List<UUID> recipeIds) {
@@ -92,7 +97,6 @@ public class ShoppingListServiceImpl  implements ShoppingListService {
                 .findDetailById(shoppingListId)
                 .orElseThrow(() ->
                         new EntityNotFoundException("ShoppingList not found"));
-
         if (!shoppingList.getUser().getId().equals(userId)) {
             throw new AccessDeniedException("Access denied");
         }

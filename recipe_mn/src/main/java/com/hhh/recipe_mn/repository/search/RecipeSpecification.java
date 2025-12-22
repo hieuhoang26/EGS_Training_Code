@@ -34,11 +34,11 @@ public class RecipeSpecification {
         }
 
         return (root, query, criteriaBuilder) -> {
-            // Join với RecipeIngredient và Ingredient
+            // Join RecipeIngredient and  Ingredient
             Join<Recipe, RecipeIngredient> recipeIngredientJoin = root.join("ingredients", JoinType.INNER);
             Join<RecipeIngredient, Ingredient> ingredientJoin = recipeIngredientJoin.join("ingredient", JoinType.INNER);
 
-            // Tạo list điều kiện OR cho từng ingredient
+            //  list condition OR for each ingredient
             List<Predicate> predicates = new ArrayList<>();
             for (String ingredientName : ingredientNames) {
                 String pattern = "%" + ingredientName.toLowerCase() + "%";

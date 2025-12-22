@@ -70,14 +70,19 @@ public class JwtServiceImp implements JwtService {
     public String generateToken(UserDetails userDetail) {
         UUID id = ((User) userDetail).getId();
         return generateToken(Map.of(
-                "userId", id
+                "userId", id,
+                    "type", "access_token"
 //                "roles", userDetail.getAuthorities()
         ), userDetail);
     }
 
     @Override
-    public String generateRefreshToken(UserDetails user) {
-        return generateRefreshToken(new HashMap<>(), user);
+    public String generateRefreshToken(UserDetails userDetail) {
+        UUID id = ((User) userDetail).getId();
+        return generateRefreshToken(Map.of(
+                "userId", id,
+                "type", "refresh_token"
+        ), userDetail);
     }
 
     @Override
@@ -99,7 +104,9 @@ public class JwtServiceImp implements JwtService {
 
     @Override
     public boolean validateToken(String token, TokenType type) {
-        return false;
+        Claims claims = extraAllClaim(token, type);
+        return !isTokenExpired(token, type)
+                && type.name().toLowerCase().equals(claims.get("type"));
     }
 
     private String generateToken(Map<String, Object> claims, UserDetails userDetails) {

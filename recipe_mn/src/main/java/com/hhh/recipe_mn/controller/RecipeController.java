@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,11 +30,12 @@ import java.util.UUID;
 @RequestMapping(Uri.RECIPE)
 @Slf4j
 public class RecipeController {
-    final RecipeService recipeService;
-    final SearchService searchService;
-    final RecipeMapper recipeMapper;
+    private final RecipeService recipeService;
+    private final SearchService searchService;
+    private final RecipeMapper recipeMapper;
 
     @PostMapping("/{userId}")
+    @PreAuthorize("hasAuthority('RECIPE:CREATE')")
     public ResponseData<?> create(@PathVariable UUID userId, @Valid @RequestBody CreateRecipeRequest request) {
         try {
             UUID rs = recipeService.create(userId,request);
@@ -44,6 +46,7 @@ public class RecipeController {
         }
     }
     @PutMapping("/{recipeId}")
+    @PreAuthorize("hasAuthority('RECIPE:UPDATE')")
     public ResponseData<?> update( @PathVariable UUID recipeId, @RequestParam UUID userId , @Valid @RequestBody UpdateRecipeRequest request) {
         try {
             recipeService.update(recipeId,userId,request);

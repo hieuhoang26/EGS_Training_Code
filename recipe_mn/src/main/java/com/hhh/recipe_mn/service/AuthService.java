@@ -2,7 +2,6 @@ package com.hhh.recipe_mn.service;
 
 import com.hhh.recipe_mn.dto.request.LogInRequest;
 import com.hhh.recipe_mn.dto.request.SignUpRequest;
-import com.hhh.recipe_mn.dto.response.ResponseData;
 import com.hhh.recipe_mn.dto.response.TokenResponse;
 import jakarta.servlet.http.HttpServletRequest;
 

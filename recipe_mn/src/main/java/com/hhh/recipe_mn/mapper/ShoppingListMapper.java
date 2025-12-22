@@ -7,7 +7,13 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(
+        componentModel = "spring",
+        uses = {
+                ShoppingListItemMapper.class,
+                ShoppingListRecipeMapper.class
+        }
+)
 public interface ShoppingListMapper {
 
 //    @Mapping(target = "recipes", source = "shoppingListRecipes")

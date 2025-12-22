@@ -1,6 +1,7 @@
 package com.hhh.recipe_mn.repository;
 
 import com.hhh.recipe_mn.model.ShoppingList;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Repository
 public interface ShoppingListRepository
         extends JpaRepository<ShoppingList, UUID> {
-    @Query("""
+        @Query("""
         select distinct sl
         from ShoppingList sl
         left join fetch sl.items i
@@ -22,4 +23,12 @@ public interface ShoppingListRepository
         where sl.id = :id
     """)
     Optional<ShoppingList> findDetailById(@Param("id") UUID id);
+
+//    @EntityGraph(attributePaths = {
+//            "items",
+//            "items.ingredient",
+//            "shoppingListRecipes",
+//            "shoppingListRecipes.recipe"
+//    })
+//    Optional<ShoppingList> findDetailById(UUID id);
 }

@@ -1,7 +1,6 @@
 package com.hhh.recipe_mn.repository;
 
 import com.hhh.recipe_mn.model.Role;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +11,7 @@ import java.util.UUID;
 public interface RoleRepository extends JpaRepository<Role, UUID> {
 
     Optional<Role> findByName(String name);
+
+    boolean existsByName(String name);
 
 }

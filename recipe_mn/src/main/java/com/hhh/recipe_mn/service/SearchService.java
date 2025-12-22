@@ -1,12 +1,9 @@
 package com.hhh.recipe_mn.service;
 
 import com.hhh.recipe_mn.dto.request.RecipeSearchRequest;
-import com.hhh.recipe_mn.dto.response.PageResponse;
 import com.hhh.recipe_mn.model.Ingredient;
 import com.hhh.recipe_mn.model.Recipe;
 import com.hhh.recipe_mn.model.RecipeIngredient;
-import com.hhh.recipe_mn.model.User;
-
 import com.hhh.recipe_mn.repository.RecipeRepository;
 import com.hhh.recipe_mn.repository.search.RecipeSpecification;
 import jakarta.persistence.criteria.Join;
@@ -21,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 

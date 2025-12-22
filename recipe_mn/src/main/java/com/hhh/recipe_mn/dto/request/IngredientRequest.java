@@ -15,7 +15,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Data
 public class IngredientRequest {
     @NotNull(message = "Ingredient ID is required")
     private UUID ingredientId;

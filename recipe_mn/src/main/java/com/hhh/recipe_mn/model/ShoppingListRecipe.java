@@ -1,6 +1,12 @@
 package com.hhh.recipe_mn.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +22,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ShoppingListRecipe extends AbstractEntity {
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue
     private UUID id;
 
     @ManyToOne
@@ -30,5 +36,4 @@ public class ShoppingListRecipe extends AbstractEntity {
     @Column(name = "recipe_name")
     private String recipeName;
 
-    // Constructors, getters, setters
 }

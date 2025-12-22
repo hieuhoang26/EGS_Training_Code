@@ -14,7 +14,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface RecipeMapper {
-//    @Mapping(target = "name", source = "user.firstName")
+//    @Mapping(target = "name", source = "name")
 //    @Mapping(target = "cuisineName", source = "cuisine.name")
 //    @Mapping(target = "cuisineCode", source = "cuisine.code")
 //    @Mapping(target = "steps", source = "steps")

@@ -54,8 +54,34 @@ public class SecurityConfig {
     @Order(1)
     public SecurityFilterChain apiSecurity(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(request -> request
-                .anyRequest().permitAll())
-//                .securityMatcher("/api/v1/**")
+                // Auth
+                .requestMatchers("/api/v1/auth/**").permitAll()
+
+                // USER
+                .requestMatchers(HttpMethod.GET, "/api/v1/users/**").hasAuthority("USER:READ")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasAuthority("USER:UPDATE")
+                .requestMatchers(HttpMethod.DELETE, "/api/v1/users/**").hasAuthority("USER:DELETE")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/users/**/roles").hasAuthority("USER:ROLE_UPDATE")
+                .requestMatchers(HttpMethod.POST, "/api/v1/users").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/v1/users/all").hasRole("ADMIN")
+
+                // ROLE
+                .requestMatchers(HttpMethod.PUT, "/api/v1/roles/**/permissions").hasAuthority("ROLE:PERMISSION_UPDATE")
+                .requestMatchers(HttpMethod.POST, "/api/v1/roles").hasAuthority("ROLE:CREATE")
+
+                // PERMISSION
+                .requestMatchers(HttpMethod.POST, "/api/v1/permissions/**").hasRole("ADMIN")
+
+                // RECIPE
+                .requestMatchers(HttpMethod.POST, "/api/v1/recipe/**").hasAuthority("RECIPE:CREATE")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/recipe/**").hasAuthority("RECIPE:UPDATE")
+                .requestMatchers(HttpMethod.POST, "/api/v1/recipe/search").hasAuthority("RECIPE:READ")
+
+                // SHOPPING LIST
+                .requestMatchers(HttpMethod.POST, "/api/v1/shopping/generate/**").hasAuthority("SHOPPING:CREATE")
+                .requestMatchers(HttpMethod.GET, "/api/v1/shopping/**").hasAuthority("SHOPPING:READ")
+
+                .anyRequest().authenticated())
         ;
 
         http.sessionManagement(manager -> manager
@@ -69,7 +95,6 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer ignoreResources() {
-        // url trên giao diện browser
         return (webSecurity) -> webSecurity
                 .ignoring()
                 .requestMatchers("/actuator/**", "/v3/**", "/webjars/**", "/swagger-ui*/*swagger-initializer.js",

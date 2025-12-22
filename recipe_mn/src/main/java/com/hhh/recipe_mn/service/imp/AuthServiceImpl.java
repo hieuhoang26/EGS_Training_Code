@@ -4,6 +4,7 @@ import com.hhh.recipe_mn.dto.request.LogInRequest;
 import com.hhh.recipe_mn.dto.request.SignUpRequest;
 import com.hhh.recipe_mn.dto.response.ResponseData;
 import com.hhh.recipe_mn.dto.response.TokenResponse;
+import com.hhh.recipe_mn.exception.InvalidDataException;
 import com.hhh.recipe_mn.exception.ResourceNotFoundException;
 import com.hhh.recipe_mn.exception.UserAlreadyExistsException;
 import com.hhh.recipe_mn.model.Role;
@@ -37,12 +38,12 @@ import static org.springframework.http.HttpHeaders.REFERER;
 @Slf4j
 public class AuthServiceImpl implements AuthService {
 
-    final AuthenticationManager authenticationManager;
-    final UserRepository userRepository;
-    final JwtService jwtService;
-    final PasswordEncoder passwordEncoder;
-    final RoleService roleService;
-    final UserService userService;
+    private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final JwtService jwtService;
+    private final PasswordEncoder passwordEncoder;
+    private final RoleService roleService;
+    private final UserService userService;
 
 
     @Override
@@ -59,14 +60,12 @@ public class AuthServiceImpl implements AuthService {
                 .map(GrantedAuthority::getAuthority)
                 .filter(auth -> auth.startsWith("ROLE_"))
                 .toList();
-
+        // Permission
         List<String> permissions = user.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .filter(auth -> !auth.startsWith("ROLE_"))
                 .toList();
 
-
-        // Permission
         return TokenResponse.builder()
                 .id(String.valueOf(user.getId()))
                 .username(user.getUsername())
@@ -111,9 +110,13 @@ public class AuthServiceImpl implements AuthService {
         if (StringUtils.isBlank(refreshToken)) {
             throw new ResourceNotFoundException("Token must be not blank");
         }
+        if (!jwtService.validateToken(refreshToken, TokenType.REFRESH_TOKEN)) {
+            throw new InvalidDataException("Invalid refresh token");
+        }
 
         String email = jwtService.extractUsername(refreshToken, TokenType.REFRESH_TOKEN);
         log.info(email);
+
         UserDetails user = userService.userDetailsService().loadUserByUsername(email);
         if (jwtService.isValid(refreshToken, TokenType.REFRESH_TOKEN, user)) {
             String newToken = jwtService.generateToken(user);

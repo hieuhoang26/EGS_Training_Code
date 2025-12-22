@@ -4,12 +4,14 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
 
 
-@Data
+@Getter
+@Setter
 public class RecipeResponse {
     private UUID id;
     private String name;
@@ -22,7 +24,7 @@ public class RecipeResponse {
     private String cuisineCode;
     private List<RecipeStepResponse> steps;
     private List<RecipeIngredientResponse> ingredients;
-    private List<String> imageUrls;
+    private Set<ImageResponse> imageUrls;
     private Long version;
 
 }

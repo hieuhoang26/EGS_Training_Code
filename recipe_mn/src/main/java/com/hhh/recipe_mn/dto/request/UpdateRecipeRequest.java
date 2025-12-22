@@ -4,12 +4,16 @@ package com.hhh.recipe_mn.dto.request;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
+
 public class UpdateRecipeRequest {
     @NotNull(message = "Version is required")
     private Long version;

@@ -8,6 +8,8 @@ public class Uri {
     public static final String FORGOT = "/api/v1/auth/forgot";
     public static final String REFRESH = "/api/v1/auth/refresh";
 
+    /* USER */
+    public static final String USER = "/api/v1/users";
 
     /* Recipe */
 
@@ -17,4 +19,8 @@ public class Uri {
     /* ShopList */
 
     public static final String SHOP = "/api/v1/shopping";
+
+    /* Role */
+    public static final String ROLE = "/api/v1/roles";
+    public static final String PERMISSION = "/api/v1/permissions";
 }

@@ -27,8 +27,6 @@ public class RecipeServiceImp implements RecipeService {
     private final UserRepository userRepository;
     private final CuisineRepository cuisineRepository;
     private final IngredientRepository ingredientRepository;
-    private final RecipeIngredientRepository recipeIngredientRepository;
-    private final RecipeStepRepository recipeStepRepository;
 
     @Override
     public UUID create(UUID userId, CreateRecipeRequest req) {
