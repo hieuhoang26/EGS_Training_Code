@@ -2,7 +2,6 @@ package com.hhh.recipe_mn.dto.response;
 
 import com.hhh.recipe_mn.utlis.Gender;
 import com.hhh.recipe_mn.utlis.UserStatus;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

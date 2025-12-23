@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,7 +30,7 @@ public class PreFilter extends OncePerRequestFilter {
     final JwtService jwtService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
         log.info("Received token: {}", authHeader);
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -52,11 +51,12 @@ public class PreFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
+
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String requestUri = request.getRequestURI();
         return requestUri.startsWith(Uri.LOGIN)
-                ||  requestUri.startsWith(Uri.SIGNUP)
+                || requestUri.startsWith(Uri.SIGNUP)
                 || requestUri.startsWith("/webhook")
                 || requestUri.startsWith("/api/v1/**")
                 || requestUri.startsWith("/bot");

@@ -38,7 +38,7 @@ public class RecipeStep {
     @Column(name = "step_order")
     private int stepOrder;
 
-    @Column(name = "instruction",columnDefinition = "text")
+    @Column(name = "instruction", columnDefinition = "text")
     private String instruction;
 
     public boolean hasValidInstruction() {

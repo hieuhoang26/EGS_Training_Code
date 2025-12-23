@@ -2,7 +2,6 @@ package com.hhh.recipe_mn.service.imp;
 
 import com.hhh.recipe_mn.dto.request.LogInRequest;
 import com.hhh.recipe_mn.dto.request.SignUpRequest;
-import com.hhh.recipe_mn.dto.response.ResponseData;
 import com.hhh.recipe_mn.dto.response.TokenResponse;
 import com.hhh.recipe_mn.exception.InvalidDataException;
 import com.hhh.recipe_mn.exception.ResourceNotFoundException;
@@ -29,7 +28,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 
 import static org.springframework.http.HttpHeaders.REFERER;
 

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -32,10 +33,11 @@ public class ShoppingListController {
             @RequestBody GenerateShoppingListRequest req,
             @PathVariable UUID userId
     ) {
+        List<UUID> recipeIds = req.getRecipeIds();
         ShoppingList shoppingList = shoppingListService.generateFromRecipes(
                 userId,
                 req.getName(),
-                req.getRecipeIds()
+                recipeIds
         );
 
         return

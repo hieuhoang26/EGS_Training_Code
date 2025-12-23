@@ -29,14 +29,15 @@ import java.util.UUID;
 @Transactional
 @RequiredArgsConstructor
 @Slf4j
-public class ShoppingListServiceImpl  implements ShoppingListService {
+public class ShoppingListServiceImpl implements ShoppingListService {
     private final UserService userService;
     private final RecipeIngredientRepository recipeIngredientRepository;
     private final RecipeRepository recipeRepository;
     private final ShoppingListRepository shoppingListRepository;
     private final IngredientAggregator ingredientAggregator;
+
     @Override
-    public ShoppingList  generateFromRecipes(UUID userId, String name, List<UUID> recipeIds) {
+    public ShoppingList generateFromRecipes(UUID userId, String name, List<UUID> recipeIds) {
 
         User user = userService.getById(userId);
         // load recipe

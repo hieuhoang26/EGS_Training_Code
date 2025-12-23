@@ -11,5 +11,6 @@ public interface RoleService {
     Role getByName(String name);
 
     Role create(RoleRequest req);
+
     Role assignPermissions(UUID roleId, Set<UUID> permissionIds);
 }

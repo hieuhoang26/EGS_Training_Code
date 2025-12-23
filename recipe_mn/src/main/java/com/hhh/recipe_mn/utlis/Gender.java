@@ -8,5 +8,5 @@ public enum Gender {
     @JsonProperty("female")
     FEMALE,
     @JsonProperty("other")
-    OTHER;
+    OTHER
 }

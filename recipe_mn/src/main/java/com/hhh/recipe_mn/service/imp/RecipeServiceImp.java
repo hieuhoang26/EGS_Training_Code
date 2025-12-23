@@ -1,10 +1,20 @@
 package com.hhh.recipe_mn.service.imp;
 
-import com.hhh.recipe_mn.dto.request.*;
-import com.hhh.recipe_mn.dto.response.PageResponse;
-import com.hhh.recipe_mn.dto.response.RecipeResponse;
-import com.hhh.recipe_mn.model.*;
-import com.hhh.recipe_mn.repository.*;
+import com.hhh.recipe_mn.dto.request.CreateRecipeRequest;
+import com.hhh.recipe_mn.dto.request.ImageRequest;
+import com.hhh.recipe_mn.dto.request.IngredientRequest;
+import com.hhh.recipe_mn.dto.request.StepRequest;
+import com.hhh.recipe_mn.dto.request.UpdateRecipeRequest;
+import com.hhh.recipe_mn.model.Cuisine;
+import com.hhh.recipe_mn.model.Ingredient;
+import com.hhh.recipe_mn.model.Recipe;
+import com.hhh.recipe_mn.model.RecipeImage;
+import com.hhh.recipe_mn.model.RecipeIngredient;
+import com.hhh.recipe_mn.model.User;
+import com.hhh.recipe_mn.repository.CuisineRepository;
+import com.hhh.recipe_mn.repository.IngredientRepository;
+import com.hhh.recipe_mn.repository.RecipeRepository;
+import com.hhh.recipe_mn.repository.UserRepository;
 import com.hhh.recipe_mn.service.RecipeService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +23,13 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,7 +70,7 @@ public class RecipeServiceImp implements RecipeService {
         addStepsToRecipe(recipe, req.getSteps());
 
         // images
-        for (ImageRequest item : req.getImages() ){
+        for (ImageRequest item : req.getImages()) {
             RecipeImage image = RecipeImage.builder()
                     .imageUrl(item.getUrl())
                     .build();
@@ -68,6 +81,7 @@ public class RecipeServiceImp implements RecipeService {
 
 
     }
+
     private void addIngredientsToRecipe(Recipe recipe, List<IngredientRequest> ingredientRequests) {
         if (ingredientRequests == null || ingredientRequests.isEmpty()) {
             return;
@@ -154,8 +168,6 @@ public class RecipeServiceImp implements RecipeService {
     }
 
 
-
-
     private void updateIngredients(Recipe recipe, List<IngredientRequest> requests) {
 
         recipe.getIngredients().clear();
@@ -177,6 +189,7 @@ public class RecipeServiceImp implements RecipeService {
             recipe.addIngredient(recipeIngredient);
         }
     }
+
     private void updateSteps(Recipe recipe, List<StepRequest> requests) {
 
 //        if (requests.isEmpty()) {
@@ -192,6 +205,7 @@ public class RecipeServiceImp implements RecipeService {
         }
         recipe.reorderSteps();
     }
+
     private void updateImages(Recipe recipe, List<ImageRequest> reqImages) {
         // id : img
         Map<UUID, RecipeImage> currentImages = recipe.getImages().stream()
@@ -228,11 +242,6 @@ public class RecipeServiceImp implements RecipeService {
         recipe.getImages().clear();
         recipe.getImages().addAll(updatedImages);
     }
-
-
-
-
-
 
 
 }

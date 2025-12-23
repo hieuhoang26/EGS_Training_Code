@@ -1,5 +1,6 @@
 package com.hhh.recipe_mn.controller;
 
+import com.hhh.recipe_mn.aop.LogExecution;
 import com.hhh.recipe_mn.dto.request.LogInRequest;
 import com.hhh.recipe_mn.dto.request.SignUpRequest;
 import com.hhh.recipe_mn.dto.response.ResponseData;
@@ -11,13 +12,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.Instant;
-import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -28,6 +25,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping(Uri.LOGIN)
+    @LogExecution
     public ResponseData login(@RequestBody LogInRequest request) {
         try {
             TokenResponse rs = authService.login(request);

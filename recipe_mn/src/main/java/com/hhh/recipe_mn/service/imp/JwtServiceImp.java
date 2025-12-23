@@ -7,22 +7,16 @@ import com.hhh.recipe_mn.utlis.TokenType;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
-import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
-import java.util.*;
+import java.util.Date;
+import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 import static com.hhh.recipe_mn.utlis.TokenType.ACCESS_TOKEN;
@@ -71,7 +65,7 @@ public class JwtServiceImp implements JwtService {
         UUID id = ((User) userDetail).getId();
         return generateToken(Map.of(
                 "userId", id,
-                    "type", "access_token"
+                "type", "access_token"
 //                "roles", userDetail.getAuthorities()
         ), userDetail);
     }

@@ -39,6 +39,7 @@ public class IngredientAggregator {
 
         return result;
     }
+
     public Map<IngredientKey, BigDecimal> aggregateV2(
             List<RecipeIngredient> items
     ) {

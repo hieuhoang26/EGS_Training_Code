@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public interface UserService  {
+public interface UserService {
     UserDetailsService userDetailsService();
 
 
@@ -21,6 +21,8 @@ public interface UserService  {
 
     User assignRoles(UUID userId, Set<UUID> roleIds);
 
+    User removeRole(UUID userId, UUID roleIds);
+
     UserResponse create(UserRequest request);
 
     UserResponse getDetailById(UUID id);
@@ -30,4 +32,6 @@ public interface UserService  {
     UserResponse update(UUID id, UserRequest request);
 
     void delete(UUID id);
+
+
 }

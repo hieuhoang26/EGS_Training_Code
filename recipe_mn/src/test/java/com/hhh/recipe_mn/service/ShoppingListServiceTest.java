@@ -1,23 +1,19 @@
 package com.hhh.recipe_mn.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import java.math.BigDecimal;
-import java.util.*;
-
-import com.hhh.recipe_mn.dto.request.IngredientKey;
-import com.hhh.recipe_mn.model.*;
+import com.hhh.recipe_mn.model.Ingredient;
+import com.hhh.recipe_mn.model.Recipe;
+import com.hhh.recipe_mn.model.User;
 import com.hhh.recipe_mn.repository.RecipeIngredientRepository;
 import com.hhh.recipe_mn.repository.RecipeRepository;
 import com.hhh.recipe_mn.repository.ShoppingListRepository;
 import com.hhh.recipe_mn.service.imp.ShoppingListServiceImpl;
 import com.hhh.recipe_mn.utlis.IngredientAggregator;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.*;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import java.util.UUID;
 
 
 class ShoppingListServiceTest {

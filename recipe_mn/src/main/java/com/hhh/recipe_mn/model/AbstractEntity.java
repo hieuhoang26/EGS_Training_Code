@@ -28,22 +28,21 @@ public abstract class AbstractEntity implements Serializable {
 
     @Column(name = "deleted", nullable = false)
     protected Boolean deleted = Boolean.FALSE;
-
-    @PrePersist
-    void prePersist(){
-        createdAt = Instant.now();
-        updatedAt = createdAt;
-    }
-    @PreUpdate
-    void preUpdate(){
-        updatedAt = Instant.now();
-    }
-
     @CreatedBy
     @Column(name = "created_by", length = 50, updatable = false)
     private String createdBy;
-
     @LastModifiedBy
     @Column(name = "updated_by", length = 50)
     private String updatedBy;
+
+    @PrePersist
+    void prePersist() {
+        createdAt = Instant.now();
+        updatedAt = createdAt;
+    }
+
+    @PreUpdate
+    void preUpdate() {
+        updatedAt = Instant.now();
+    }
 }

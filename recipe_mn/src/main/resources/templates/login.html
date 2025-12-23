@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      xmlns:th="https://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+>
 <head>
     <title>Hello Security!</title>
 </head>
 <body>
 </h2>Login</h2>
 
-<form method="post" action="/doLogin">
-    <input type="text" name="email" placeholder="Email"/>
-    <input type="password" name="password" placeholder="Password"/>
+<form action="/doLogin" method="post">
+    <input name="email" placeholder="Email" type="text"/>
+    <input name="password" placeholder="Password" type="password"/>
     <button type="submit">Login</button>
 </form>
 </body>

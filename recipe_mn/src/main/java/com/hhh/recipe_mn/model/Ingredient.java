@@ -34,5 +34,5 @@ public class Ingredient extends AbstractEntity {
 
     // Shopping List Item
     @OneToMany(mappedBy = "ingredient")
-    private List<ShoppingListItem>  shoppingListItems = new ArrayList<>();
+    private List<ShoppingListItem> shoppingListItems = new ArrayList<>();
 }

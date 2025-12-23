@@ -20,6 +20,7 @@ public class RoleServiceImp implements RoleService {
 
     private final RoleRepository roleRepository;
     private final PermissionRepository permissionRepository;
+
     @Override
     public Role getByName(String name) {
         return roleRepository.findByName(name).orElse(null);

@@ -8,8 +8,6 @@ import com.hhh.recipe_mn.dto.response.UserResponse;
 import com.hhh.recipe_mn.service.UserService;
 import com.hhh.recipe_mn.utlis.Uri;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -43,6 +42,16 @@ public class UserController {
         } catch (Exception e) {
             log.error("Failed to assign roles for user id={}. errorMessage={}", id, e.getMessage(), e);
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Assign roles failed");
+        }
+    }
+
+    @DeleteMapping("/{id}/role")
+    public ResponseData<?> removeRole(@RequestParam UUID id, @RequestParam UUID roleId) {
+        try {
+            return new ResponseData<>(HttpStatus.OK.value(), "Roles removed successfully", userService.removeRole(id, roleId));
+        } catch (Exception e) {
+            log.error("Failed to assign roles for user id={}. errorMessage={}", id, e.getMessage(), e);
+            return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Remove roles failed");
         }
     }
 

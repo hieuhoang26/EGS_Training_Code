@@ -68,8 +68,19 @@ public class UserServiceImp implements UserService {
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
         Set<Role> roles = new HashSet<>(roleRepository.findAllById(roleIds));
-        user.setRoles(roles);
+        user.addRoles(roles);
+        return userRepository.save(user);
+    }
 
+    @Override
+    public User removeRole(UUID userId, UUID roleId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        Role role = roleRepository.findById(roleId)
+                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+
+        user.removeRole(role);
         return userRepository.save(user);
     }
 

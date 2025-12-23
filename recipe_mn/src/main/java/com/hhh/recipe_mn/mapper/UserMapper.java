@@ -5,7 +5,6 @@ import com.hhh.recipe_mn.model.Permission;
 import com.hhh.recipe_mn.model.Role;
 import com.hhh.recipe_mn.model.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
-//    @Mapping(target = "roles", expression = "java(mapRoles(user))")
+    //    @Mapping(target = "roles", expression = "java(mapRoles(user))")
 //    @Mapping(target = "permissions", expression = "java(mapPermissions(user))")
     UserResponse toResponse(User user);
 

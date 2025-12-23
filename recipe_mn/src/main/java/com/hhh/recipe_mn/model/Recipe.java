@@ -103,6 +103,7 @@ public class Recipe extends AbstractEntity {
         ingredients.remove(recipeIngredient);
         recipeIngredient.setRecipe(null);
     }
+
     public void addStep(RecipeStep step) {
         if (!step.hasValidInstruction()) {
             throw new IllegalArgumentException("Step instruction cannot be empty");
@@ -149,9 +150,6 @@ public class Recipe extends AbstractEntity {
             steps.get(i).setStepOrder(i + 1);
         }
     }
-
-
-
 
 
 }

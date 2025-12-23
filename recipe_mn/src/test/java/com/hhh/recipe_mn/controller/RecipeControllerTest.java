@@ -5,10 +5,10 @@ import com.hhh.recipe_mn.dto.request.CreateRecipeRequest;
 import com.hhh.recipe_mn.dto.request.ImageRequest;
 import com.hhh.recipe_mn.dto.request.IngredientRequest;
 import com.hhh.recipe_mn.dto.request.StepRequest;
+import com.hhh.recipe_mn.mapper.RecipeMapper;
 import com.hhh.recipe_mn.security.JwtService;
 import com.hhh.recipe_mn.service.RecipeService;
 import com.hhh.recipe_mn.service.SearchService;
-import com.hhh.recipe_mn.mapper.RecipeMapper;
 import com.hhh.recipe_mn.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,13 +21,17 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = RecipeController.class)
 @AutoConfigureMockMvc(addFilters = false)
@@ -222,6 +226,7 @@ class RecipeControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
+
     // SERVICE ERROR
     @Test
     void createRecipe_WhenServiceThrowsException_ShouldReturn400() throws Exception {

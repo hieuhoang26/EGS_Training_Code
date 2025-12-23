@@ -14,13 +14,18 @@ import com.hhh.recipe_mn.service.SearchService;
 import com.hhh.recipe_mn.utlis.PageMapper;
 import com.hhh.recipe_mn.utlis.Uri;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
@@ -38,24 +43,26 @@ public class RecipeController {
     @PreAuthorize("hasAuthority('RECIPE:CREATE')")
     public ResponseData<?> create(@PathVariable UUID userId, @Valid @RequestBody CreateRecipeRequest request) {
         try {
-            UUID rs = recipeService.create(userId,request);
+            UUID rs = recipeService.create(userId, request);
             return new ResponseData<>(HttpStatus.CREATED.value(), "Success", rs);
         } catch (Exception e) {
             log.error("errorMessage={}", e.getMessage(), e.getCause());
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Add user fail");
         }
     }
+
     @PutMapping("/{recipeId}")
     @PreAuthorize("hasAuthority('RECIPE:UPDATE')")
-    public ResponseData<?> update( @PathVariable UUID recipeId, @RequestParam UUID userId , @Valid @RequestBody UpdateRecipeRequest request) {
+    public ResponseData<?> update(@PathVariable UUID recipeId, @RequestParam UUID userId, @Valid @RequestBody UpdateRecipeRequest request) {
         try {
-            recipeService.update(recipeId,userId,request);
+            recipeService.update(recipeId, userId, request);
             return new ResponseData<>(HttpStatus.OK.value(), "Success");
         } catch (Exception e) {
             log.error("errorMessage={}", e.getMessage(), e.getCause());
             return new ResponseError(HttpStatus.BAD_REQUEST.value(), "Fail");
         }
     }
+
     @PostMapping("/search")
     public ResponseData<?> search(@RequestBody RecipeSearchRequest request) {
         try {

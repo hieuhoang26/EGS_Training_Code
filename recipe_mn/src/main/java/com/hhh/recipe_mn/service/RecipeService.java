@@ -7,5 +7,6 @@ import java.util.UUID;
 
 public interface RecipeService {
     UUID create(UUID userId, CreateRecipeRequest request);
+
     void update(UUID recipeId, UUID userId, UpdateRecipeRequest request);
 }

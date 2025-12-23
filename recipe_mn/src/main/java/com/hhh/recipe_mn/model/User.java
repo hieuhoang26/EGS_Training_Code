@@ -88,7 +88,7 @@ public class User extends AbstractEntity implements UserDetails {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "email" , unique = true)
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password")
@@ -127,7 +127,7 @@ public class User extends AbstractEntity implements UserDetails {
 
         // ROLE_
         roles.forEach(role ->
-                authorities.add(new SimpleGrantedAuthority( role.getName()))
+                authorities.add(new SimpleGrantedAuthority(role.getName()))
         );
 
         // PERMISSION
@@ -137,7 +137,6 @@ public class User extends AbstractEntity implements UserDetails {
                 .forEach(p ->
                         authorities.add(new SimpleGrantedAuthority(p))
                 );
-
         return authorities;
     }
 
@@ -150,5 +149,30 @@ public class User extends AbstractEntity implements UserDetails {
     public boolean isEnabled() {
         return UserStatus.ACTIVE.equals(status);
     }
+
+    public void assignRoles(Set<Role> roles) {
+        this.roles.clear();
+        this.roles.addAll(roles);
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
+
+    public void addRoles(Collection<Role> roles) {
+        if (roles == null || roles.isEmpty()) {
+            return;
+        }
+        this.roles.addAll(roles);
+    }
+
+    public void removeRole(Role role) {
+        if (role == null) {
+            return;
+        }
+        this.roles.remove(role);
+    }
+
+
 }
 

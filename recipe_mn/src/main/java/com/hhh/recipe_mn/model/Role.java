@@ -20,7 +20,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "roles")
-public class Role  extends AbstractEntity{
+public class Role extends AbstractEntity {
     @Id
     @GeneratedValue
     private UUID id;
@@ -39,4 +39,16 @@ public class Role  extends AbstractEntity{
     )
     private Set<Permission> permissions = new HashSet<>();
 
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Role)) return false;
+        Role role = (Role) obj;
+        return id != null && role.id.equals(id);
+    }
 }
