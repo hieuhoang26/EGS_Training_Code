@@ -28,6 +28,4 @@ public interface RecipeMapper {
     RecipeIngredientResponse toIngredientResponse(RecipeIngredient entity);
 
     RecipeStepResponse toStepResponse(RecipeStep entity);
-
-
 }
